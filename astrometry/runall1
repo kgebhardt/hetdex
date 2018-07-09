@@ -1,0 +1,40 @@
+mkdir -p $1v$2
+cd $1v$2
+# cp /work/00115/gebhardt/maverick/sci/panacea/shifts/rimmask0 .
+# cp /work/00115/gebhardt/maverick/sci/panacea/shifts/rimmask .
+# cp /work/00115/gebhardt/maverick/sci/panacea/shifts/rimm .
+cp /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/*/*/CoFeS* .
+# chmod +x rimmask0; rimmask0
+ls CoFeS*_*.fits | cut -b 1-20 | uniq | awk '{print "python /work/00115/gebhardt/maverick/sci/panacea/shifts/cofes_vis.py",$1}' > j1 ; chmod +x j1 ; j1
+cp /work/00115/gebhardt/maverick/scripts/astrometry/* .
+awk.dat
+run1
+rm -f CoFeS*fits
+run2
+awk2.dat
+ls *.coo | awk '{print "rdsub",$1}' | sed s/.coo// > run4a; chmod +x run4a
+run4a
+run6
+run6b
+run8b
+if [ -e all.raw ]
+ then
+   run9
+ else
+   echo "only one file"
+fi
+cp /work/00115/gebhardt/maverick/scripts/shuffle/shuffle.cfg .
+cp /work/00115/gebhardt/maverick/scripts/shuffle/rdo_shuffle .
+cp /work/00115/gebhardt/maverick/scripts/fplane/fplane.txt .
+echo "rdo_shuffle" $3 $4 0 $5 0 0 0 $1"v"$2 > rshuf
+chmod +x rshuf; rshuf
+grep 000001 $1v$2.ifu | awk '{print $3,$4,$5,$6,$2}' > shout.ifu
+~gebhardt/wcs/wcstools-3.9.2/bin/gethead -p /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/*/*/multi_???_*LL*fits TRAJCRA TRAJCDEC PARANGLE | awk '{print $2,$3,$4}' | head -1 > radec.orig
+rastrom3 $1 $2  0.1
+grep . getoff_*.out | awk '{if($6>0) print $1,sqrt(($4*$4+$5*$5)/2./$6),$6; else print $1,0,$6}' | sed s/getoff_// | sed s/.out:// | sort -g > $1v$2.alloff
+awk '{print "rtf",360-($3+90+1.8)}' radec2.dat > rtf2
+chmod +x rtf2; rtf2
+awk '{print "raddwcsfp",$1,$2}' radec2.dat > rtf3
+chmod +x rtf3; rtf3
+mv imrot.fits $1v$2fp.fits
+rm -f immosaic.fits

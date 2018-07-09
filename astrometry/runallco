@@ -1,0 +1,27 @@
+mkdir -p $1v$2
+cd $1v$2
+cp /work/00115/gebhardt/maverick/sci/panacea/shifts/rimmask0 .
+cp /work/00115/gebhardt/maverick/sci/panacea/shifts/rimmask .
+cp /work/00115/gebhardt/maverick/sci/panacea/shifts/rimm .
+cp /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/*/*/CoFeS* .
+ls CoFeS*_074*fits | cut -b 1-20 | awk '{print "python /work/00115/gebhardt/maverick/sci/panacea/shifts/cofes_vis.py",$1}' > j1 ; chmod +x j1 ; j1
+cp /work/00115/gebhardt/maverick/sci/panacea/shifts/scripts/* .
+awk.dat
+run1
+rm -f CoFeS*fits
+run2
+awk2.dat
+ls *.coo | awk '{print "rdsub",$1}' | sed s/.coo// > run4a; chmod +x run4a
+run4a
+run6
+run6b
+run8b
+if [ -e all.raw ]
+ then
+   run9
+ else
+   echo "only one file"
+fi
+cp /work/00115/gebhardt/maverick/shuf/shuffle.cfg .
+cp /work/00115/gebhardt/maverick/sci/panacea/shifts/fplane.txt .
+cp /work/00115/gebhardt/maverick/shuf/rdo_shuffle .

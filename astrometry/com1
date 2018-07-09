@@ -1,0 +1,1 @@
+rm -f tmp.csv; add_ra_dec --fplane /work/00115/gebhardt/maverick/scripts/fplane/fplane.txt --fout tmp.csv --ftype daophot_allstar --ihmps $1 --astrometry
