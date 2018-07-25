@@ -1,0 +1,31 @@
+name=$1
+rm -f tmp1.fits tmp2.fits
+~gebhardt/bin/imextnmq << eof
+data.fits
+1
+1
+$1 $1
+0
+0
+tmp1.fits
+eof
+~gebhardt/bin/imextnmq << eof
+wv.fits
+1
+1
+$1 $1
+0
+0
+tmp2.fits
+eof
+~gebhardt/bin/ftoaq << eof
+tmp1.fits
+1
+eof
+mv ftoa.out 1.out
+~gebhardt/bin/ftoaq << eof
+tmp2.fits
+1
+eof
+mv ftoa.out 2.out
+paste 2.out 1.out | awk '{print $2,$4}' > e${name}.dat

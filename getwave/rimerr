@@ -1,0 +1,81 @@
+name=$1
+rskyftf $1
+cp sky.fits sky_orig.fits
+
+rm -f imbox.fits imar.fits imars.fits
+~gebhardt/bin/imbox2 << eof
+sky_orig.fits
+1
+15 1
+1
+1
+eof
+~gebhardt/bin/imar << eof
+skyfit.fits
+1
+imbox.fits
+1
+1
+eof
+mv imar.fits skymod.fits
+~gebhardt/bin/imarsqrt << eof
+skymod.fits
+1
+eof
+mv imars.fits err0.fits
+~gebhardt/bin/imar << eof
+sky_orig.fits
+1
+err0.fits
+1
+4
+eof
+mv imar.fits sig.fits
+~gebhardt/bin/imstat << eof
+sig.fits
+1
+100 200
+2 110
+eof
+mv imstat.out s1
+~gebhardt/bin/imstat << eof
+sig.fits
+1
+500 600
+2 110
+eof
+mv imstat.out s2
+~gebhardt/bin/imstat << eof
+sig.fits
+1
+900 1000
+2 110
+eof
+mv imstat.out s3
+paste s1 s2 s3 | awk '{print $1,$4,$9,$14}' > $1err.dat
+cp err0.fits $1err.fits
+
+rimerr2
+mv imar.fits sig2.fits
+~gebhardt/bin/imstat << eof
+sig2.fits
+1
+40 90
+2 110
+eof
+mv imstat.out s1
+~gebhardt/bin/imstat << eof
+sig2.fits
+1
+150 200
+2 110
+eof
+mv imstat.out s2
+~gebhardt/bin/imstat << eof
+sig2.fits
+1
+250 300
+2 110
+eof
+mv imstat.out s3
+paste s1 s2 s3 | awk '{print $1,$4,$9,$14}' > $1err2.dat

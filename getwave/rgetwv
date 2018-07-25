@@ -1,0 +1,3 @@
+wv=$1
+wvr=$2
+awk '{if($1>(wv0-wvr0)&&$1<(wv0+wvr0)) print $0}' wv0=$wv wvr0=$wvr e???.dat >> j1

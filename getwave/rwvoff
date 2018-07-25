@@ -1,0 +1,10 @@
+rm -f in wvout
+cp $1 in
+~gebhardt/bin/wvoff
+mv wvout $1.wvout
+awk '{print $1,$3}' $1.wvout > tmp
+~gebhardt/bin/smline << eof
+/null
+0.0
+eof
+sort -g +1 -2 smline.out  | head -1 | awk '{print $1,$2,$3}' > $1.min

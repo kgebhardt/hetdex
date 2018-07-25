@@ -1,0 +1,37 @@
+rm -rf newwave
+mkdir -p newwave
+cd newwave
+cp ../$1.fits tmp.fits
+cp ../$1_fbavg.fits fbavg.fits
+cp /work/00115/gebhardt/maverick/scripts/getwave/* .
+rskyftf tmp
+cp sky.fits newsky.fits
+run11 1.0 1.0 1.0 1.0 e
+cp out skymod
+ls e*.dat | awk '{print "rwvoff",$1}' > rt
+chmod +x rt; rt
+grep . *.min | sed s/"\."/" "/ | sed s/e// | sed s/":"/" "/ | awk '{print $4}' > j1
+~gebhardt/bin/biwt << eof
+j1
+1
+eof
+awk '{print "rcut",$2+3*$3}' biwt.out > rt2
+grep . *.min | sed s/"\."/" "/ | sed s/e// | sed s/":"/" "/ | awk '{print $1,$3,1,$4}' > j1
+chmod +x rt2; rt2
+cp j1 tmp
+~gebhardt/bin/smline << eof
+/vcps
+$2
+eof
+mv smline.out wvfix.dat
+rm -f imars.fits
+~gebhardt/bin/imfixwv << eof
+wv.fits
+1
+eof
+mv imars.fits newwv.fits
+cd ..
+mv newwave/newwv.fits .
+mv newwave/fbavg.fits newfb.fits
+mv newwave/wvfix.dat $1wv.dat
+mv newwave/pgplot.ps $1wv.ps

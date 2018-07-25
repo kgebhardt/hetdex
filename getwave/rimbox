@@ -1,0 +1,15 @@
+rm -f imbox.fits imar.fits
+~gebhardt/bin/imboxrow << eof
+$1.fits
+1
+201 41
+1
+1
+eof
+~gebhardt/bin/imar << eof
+$1.fits
+1
+imbox.fits
+1
+2
+eof

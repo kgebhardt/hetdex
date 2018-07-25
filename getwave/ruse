@@ -1,0 +1,7 @@
+name=$1
+awk '{if($1>4500&&$1<5300) print $0}' $name > j1
+~gebhardt/bin/biwt << eof
+j1
+2
+eof
+awk '{print $2}' biwt.out > $name.biwt

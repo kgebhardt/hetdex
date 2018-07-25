@@ -1,0 +1,31 @@
+rm -f imbin.fits imbox.fits imar.fits imars.fits 1.fits 2.fits
+~gebhardt/bin/imbin << eof
+sky_orig.fits
+3 1
+eof
+mv imbin.fits 2.fits
+cp err0.fits 1.fits
+~gebhardt/bin/imar << eof
+err0.fits
+1
+1.fits
+1
+3
+eof
+~gebhardt/bin/imbin << eof
+imar.fits
+3 1
+eof
+~gebhardt/bin/imarsqrt << eof
+imbin.fits
+1
+eof
+rm -f imar.fits
+~gebhardt/bin/imar << eof
+2.fits
+1
+imars.fits
+1
+4
+eof
+

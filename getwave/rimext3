@@ -1,0 +1,45 @@
+name=$1
+rm -f tmp1.fits tmp2.fits tmp3.fits tmp4.fits
+~gebhardt/bin/imextnmq << eof
+data.fits
+1
+1
+$1 $1
+0
+0
+tmp1.fits
+eof
+~gebhardt/bin/imextnmq << eof
+wv.fits
+1
+1
+$1 $1
+0
+0
+tmp2.fits
+eof
+~gebhardt/bin/imextnmq << eof
+newfb.fits
+1
+1
+$1 $1
+0
+0
+tmp3.fits
+eof
+~gebhardt/bin/ftoaq << eof
+tmp1.fits
+1
+eof
+mv ftoa.out 1.out
+~gebhardt/bin/ftoaq << eof
+tmp2.fits
+1
+eof
+mv ftoa.out 2.out
+~gebhardt/bin/ftoaq << eof
+tmp3.fits
+1
+eof
+mv ftoa.out 3.out
+paste 2.out 1.out 3.out | awk '{if($6>0) print $2,$4/$6; else print $2,0}' > e${name}.dat

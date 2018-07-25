@@ -1,0 +1,53 @@
+name=$1
+shot=$2
+exp=$3
+amp=$4
+spline=$5
+cd $1v$2
+mkdir -p exp$3_$4
+cd exp$3_$4
+
+mkdir /tmp/$1v$2e$3a$4
+cd /tmp/$1v$2e$3a$4
+
+cp /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/exp$3/virus/$4.fits .
+cp $4.fits tmp.fits
+rm -f imars.fits
+~gebhardt/bin/imars << eof
+tmp.fits
+14
+1
+0
+eof
+mv imars.fits $4_fbavg.fits
+
+/work/00115/gebhardt/maverick/scripts/getwave/rfixwv $4 $5
+
+cp $4_fbavg.fits newfb.fits
+rm -f imrep.fits
+~gebhardt/bin/imrepwv << eof
+tmp.fits
+eof
+mv imrep.fits tmp.fits
+cp newfb.fits fbavg.fits
+
+cp /work/00115/gebhardt/maverick/scripts/getwave/* .
+rskyftf tmp
+cp sky.fits newsky.fits
+run11 1.0 1.0 1.0 1.0 e
+
+mv e.fits newsky.fits
+~gebhardt/bin/imrepftf << eof
+tmp.fits
+eof
+mv imrep.fits $4.fits
+rimerr $4
+
+cd -
+mv /tmp/$1v$2e$3a$4/$4.fits .
+mv /tmp/$1v$2e$3a$4/$4wv.dat .
+mv /tmp/$1v$2e$3a$4/$4wv.ps .
+mv /tmp/$1v$2e$3a$4/$4err.fits .
+mv /tmp/$1v$2e$3a$4/$4err.dat .
+mv /tmp/$1v$2e$3a$4/$4err2.dat .
+rm -r /tmp/$1v$2e$3a$4

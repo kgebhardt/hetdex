@@ -1,0 +1,36 @@
+rm -f imars.fits e*.dat
+~gebhardt/bin/imars << eof
+"$1.fits"
+11
+1
+0
+eof
+mv imars.fits data.fits
+~gebhardt/bin/imars << eof
+"$1.fits"
+12
+1
+0
+eof
+mv imars.fits wv.fits
+~gebhardt/bin/imars << eof
+"$1.fits"
+14
+1
+0
+eof
+mv imars.fits fb.fits
+~gebhardt/bin/imars << eof
+"$1.fits"
+16
+1
+0
+eof
+mv imars.fits sky.fits
+~gebhardt/bin/imars << eof
+"$1.fits"
+17
+1
+0
+eof
+mv imars.fits skyfit.fits

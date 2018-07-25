@@ -1,0 +1,22 @@
+name=$1
+mkdir $1
+cd $1
+cp /work/03946/hetdex/maverick/red1/reductions/20180624/virus/virus0000008/exp01/virus/$1.fits tmp.fits
+cp ../rskyftf .
+cp ../run11o .
+cp ../run11 .
+cp ../runsm .
+cp ../rimbox .
+cp ../run3 .
+cp ../ruse .
+cp ../rimext3 .
+cp ../fbavg.fits .
+rskyftf tmp
+cp sky.fits newsky.fits
+run11o
+cp ../rgetwv .
+cp ../rgetwv0 .
+cp ../rgetwv1 .
+cp ../run3b .
+cp ../rimext3b .
+rgetwv0

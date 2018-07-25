@@ -1,0 +1,16 @@
+rm -f imars.fits imar.fits
+~gebhardt/bin/immodfb << eof
+fbavg.fits
+1
+$1 $2
+$3 $4
+eof
+mv imars.fits newfb.fits 
+~gebhardt/bin/imrepftf << eof
+tmp.fits
+eof
+mv imrep.fits  tmp.fits 
+rskyftf tmp
+runsm 11 5
+rimbox newsky
+mv imar.fits $5.fits

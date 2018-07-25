@@ -1,0 +1,23 @@
+bin=$1
+sm=$2
+rm -f e*.dat
+run3
+ls e*.dat | awk '{print "ruse",$1}' > rt
+chmod +x rt; rt
+grep . e*biwt | sed s/:/" "/ | sort -g +1 -2 | tail -10 | sed s/"\."/" "/  | awk '{print "rm",$1"*"}' > rt2
+chmod +x rt2
+rt2
+rm e*biwt
+awk '{if($2!=0) print $0}' e*.dat | sort -g > in
+~gebhardt/bin/smftf << eof
+$bin
+eof
+cp out tmp
+~gebhardt/bin/smlineftf << eof
+/vcps
+$sm
+eof
+cp smline.out in
+rm -f imar.fits
+~gebhardt/bin/skyftf
+mv imar.fits newsky.fits

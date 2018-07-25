@@ -1,0 +1,17 @@
+rm -f j1 e???.dat
+cp $1.fits data.fits
+run3b
+rgetwv 5460 5
+rgetwv 5199 5
+rgetwv 5085 5
+rgetwv 4862 5
+rgetwv 4358 5
+rgetwv 3911 8
+rgetwv 3831 5
+rgetwv 3735 10
+rgetwv 3550 10
+~gebhardt/bin/biwt << eof
+j1
+2
+eof
+mv biwt.out $1.biwt
