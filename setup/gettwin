@@ -1,0 +1,4 @@
+data=$1
+shot=$2
+sed s/twi666/"-td "$1" -to "$2" -te 1"/g /work/00115/gebhardt/maverick/sci/panacea/rtwi666b > "rtwi"$1
+sed s/rtwi666/"rtwi"$1/g /work/00115/gebhardt/maverick/sci/panacea/rtwi666b.slurm > "rtwi"$1".slurm"

@@ -1,0 +1,3 @@
+sed s/"s666"/$2/ /work/00115/gebhardt/maverick/sci/panacea/rscin666 | sed s/t666/$3/ > rscin$1v$2
+sed -i s/d666/$1/g rscin$1v$2
+sed s/rscin666/rscin$1v$2/ /work/00115/gebhardt/maverick/sci/panacea/rscin666.slurm > rscin$1v$2.slurm

@@ -1,0 +1,55 @@
+~gebhardt/wcs/wcstools-3.9.2/bin/gethead -p  /work/03946/hetdex/maverick/$1/v*/*/exp01/*/*103LL*sci.fits OBJECT DARKTIME TRAJCRA TRAJCDEC PARANGLE  > j1
+~gebhardt/wcs/wcstools-3.9.2/bin/gethead -p  /work/03946/hetdex/maverick/$1/v*/*/exp01/*/*103LL*twi.fits OBJECT DARKTIME TRAJCRA TRAJCDEC PARANGLE  > j1t
+sed s/"\/work\/03946\/hetdex\/maverick\/"// j1 > j2 ; mv j2 j1
+sed s/"\/work\/03946\/hetdex\/maverick\/"// j1t | head -1 > j2 ; mv j2 j1t
+cut -b 1-8 j1 > j2
+cut -b 25-27 j1 > j3
+paste j2 j3 > s3
+cut -b 1-8 j1t > tmptwi
+cut -b 25-27 j1t > tmptwi2
+paste tmptwi tmptwi2 | awk '{print "~gebhardt/bin/awkr1.dat",$0}' > rt1
+chmod +x rt1; rt1 > rt2
+paste tmptwi rt2 tmptwi2 | awk '{print "~gebhardt/bin/awkr.dat",$1,$2,$3}' > rt3
+chmod +x rt3; rt3
+paste tmptwi tmptwi2 | awk '{print "~gebhardt/bin/gettwin",$1,$2}' > rt4
+chmod +x rt4; rt4
+
+awk '{print "do_shuffle",$4,$5,$6}' j1 > s1
+awk '{if($4<180) print $1,$2,$3,0,0,0,0,0; else print $1,$2,$3,0,1,0,0,0}' s1 > s2
+paste s2 s3 | awk '{print "r"$1,$2,$3,$4,$5,$6,$7,$8,$9"v"$10}' > s4
+paste s1 s4 | awk '{print $2,$3,$4,$13}' >> radec.tmp
+cat s4 >> shuf.tmp
+
+awk '{print "runall",$1,$2}' s3 >> s5.tmp
+# echo " cp /work/00115/gebhardt/maverick/sci/panacea/*"$1"* ."
+
+mkdir -p allscripts/$1
+cp s4 allscripts/$1/r$1.shuf
+paste s1 s4 | awk '{print $2,$3,$4,$13}' > allscripts/$1/r$1.radec
+awk '{print "runall",$1,$2}' s3 > allscripts/$1/r$1.co
+awk '{print "rungp",$1,$2}' s3 > allscripts/$1/r$1.gp
+awk '{print "rg1",$1,$2}' s3 > allscripts/$1/r$1.res
+awk '{print "rg2",$1,$2}' s3 > allscripts/$1/r$1.res2
+awk '{print "run0",$1,$2}' s3 > allscripts/$1/r$1.sky
+awk '{print "run0b",$1,$2}' s3 > allscripts/$1/r$1.sky2
+awk '{print "rget",$1,$2}' s3 > allscripts/$1/r$1.trace
+awk '{print "rerr",$1,$2}' s3 > allscripts/$1/r$1.sens
+awk '{print "rset0",$1,$2}' s3 > allscripts/$1/r$1.det1
+awk '{print "rrun2",$1,$2}' s3 > allscripts/$1/r$1.det2
+awk '{print "rsetwave0",$1,$2}' s3 > allscripts/$1/r$1.wave
+awk '{print "sed s/d666/"$1"/g /work/00115/gebhardt/maverick/sci/panacea/vol666 | sed s/s666/"$2"/g"}' s3 > rt; chmod +x rt
+rt > allscripts/$1/r$1.vol
+awk '{print "cat tmptwi2"}' s3 > jt; chmod +x jt; jt > j6
+paste s3 j6 | awk '{print "/work/00115/gebhardt/maverick/sci/panacea/awkr2.dat",$1,$2,$3}' > jt
+chmod +x jt; jt
+ls rscin$1v*.slurm | awk '{print "sbatch",$1}' > r$1.batch
+mv rscin$1v* allscripts/$1/.
+mv r$1.batch allscripts/$1/.
+mv rtwi$1* allscripts/$1/.
+mv rscin$1* allscripts/$1/.
+paste allscripts/$1/r$1.co allscripts/$1/r$1.shuf | awk '{print $1,$2,$3,$5,$6,$8}' > allscripts/$1/r$1.co2
+chmod +x allscripts/$1/r$1.*
+
+echo " cp /work/00115/gebhardt/maverick/sci/panacea/allscripts/$1/rtwi*"$1"* ."
+echo " cp /work/00115/gebhardt/maverick/sci/panacea/allscripts/$1/r*"$1"v* ."
+echo " cp /work/00115/gebhardt/maverick/sci/panacea/allscripts/$1/r*"$1"*batch ."
