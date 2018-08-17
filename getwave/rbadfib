@@ -1,0 +1,9 @@
+amp=$1
+rm -f j1 rtmp
+grep $1 badfib.list > j1
+wc j1 | awk '{if($1==0) print "rm j1"}' > rtmp; chmod +x rtmp; rtmp
+if [ -e j1 ]
+ then
+ awk '{print "rimzerofib",$0}' j1 > rtmp
+ chmod +x rtmp; rtmp
+fi

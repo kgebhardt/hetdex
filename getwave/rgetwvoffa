@@ -1,0 +1,4 @@
+/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff $1 $2 $3 $4_LL $5
+/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff $1 $2 $3 $4_LU $5
+/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff $1 $2 $3 $4_RL $5
+/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff $1 $2 $3 $4_RU $5

@@ -1,0 +1,5 @@
+rm -f imrep.fits
+~gebhardt/bin/imzerofib << eof
+"$1.fits" $2
+eof
+mv imrep.fits $1.fits

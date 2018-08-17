@@ -41,13 +41,27 @@ mv e.fits newsky.fits
 tmp.fits
 eof
 mv imrep.fits $4.fits
+
+# get the error and add it into the 18th extension
 rimerr $4
+cp $4err.fits err.fits
+~gebhardt/bin/imadderr << eof
+$4.fits
+eof
+mv imrep.fits $4.fits
+
+if [ -e /work/03946/hetdex/maverick/virus_config/rescor/$4res.fits ]
+then echo "Getting Residual map"
+ln -s /work/03946/hetdex/maverick/virus_config/rescor/$4res.fits .
+#rimsubres $4 $4res
+rbadfib $4
+fi
 
 cd -
 mv /tmp/$1v$2e$3a$4/$4.fits .
 mv /tmp/$1v$2e$3a$4/$4wv.dat .
 mv /tmp/$1v$2e$3a$4/$4wv.ps .
-mv /tmp/$1v$2e$3a$4/$4err.fits .
-mv /tmp/$1v$2e$3a$4/$4err.dat .
-mv /tmp/$1v$2e$3a$4/$4err2.dat .
+# mv /tmp/$1v$2e$3a$4/$4err.fits .
+# mv /tmp/$1v$2e$3a$4/$4err.dat .
+# mv /tmp/$1v$2e$3a$4/$4err2.dat .
 rm -r /tmp/$1v$2e$3a$4

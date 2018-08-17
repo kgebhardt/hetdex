@@ -1,0 +1,51 @@
+date=$1
+shot=$2
+mkdir -p $1v$2
+cd $1v$2
+ls /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/exp01/virus/m*_LL.fits | sed s/"\/"/" "/g | awk '{print $12}' | sed s/_LL.fits// > mliste1
+ls /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/exp02/virus/m*_LL.fits | sed s/"\/"/" "/g | awk '{print $12}' | sed s/_LL.fits// > mliste2
+ls /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/exp03/virus/m*_LL.fits | sed s/"\/"/" "/g | awk '{print $12}' | sed s/_LL.fits// > mliste3
+awk '{print "python /work/00115/gebhardt/maverick/panacea/Panacea/refine_reduction.py -d",date0,"-o",shot0,"-e 1 -rc -op reductions -m",$1}' date0=$date shot0=$shot mliste1 > sb1
+awk '{print "python /work/00115/gebhardt/maverick/panacea/Panacea/refine_reduction.py -d",date0,"-o",shot0,"-e 2 -rc -op reductions -m",$1}' date0=$date shot0=$shot mliste2 > sb2
+awk '{print "python /work/00115/gebhardt/maverick/panacea/Panacea/refine_reduction.py -d",date0,"-o",shot0,"-e 3 -rc -op reductions -m",$1}' date0=$date shot0=$shot mliste3 > sb3
+cat sb1 sb2 sb3 > sball_$1v$2
+wc sball_$1v$2 | awk '{print "rmkbatch",$1,"sball_"date0"v"shot0}' date0=$date shot0=$shot > rt
+cp ../rmkbatch .
+chmod +x rt; rt
+mv out.slurm sball_$1v$2.slurm
+
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"01",$1"_LL",0.05}' date0=$date shot0=$shot mliste1 > wb1
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"01",$1"_LU",0.05}' date0=$date shot0=$shot mliste1 >> wb1
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"01",$1"_RL",0.05}' date0=$date shot0=$shot mliste1 >> wb1
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"01",$1"_RU",0.05}' date0=$date shot0=$shot mliste1 >> wb1
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"02",$1"_LL",0.05}' date0=$date shot0=$shot mliste2 > wb2
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"02",$1"_LU",0.05}' date0=$date shot0=$shot mliste2 >> wb2
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"02",$1"_RL",0.05}' date0=$date shot0=$shot mliste2 >> wb2
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"02",$1"_RU",0.05}' date0=$date shot0=$shot mliste2 >> wb2
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"03",$1"_LL",0.05}' date0=$date shot0=$shot mliste3 > wb3
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"03",$1"_LU",0.05}' date0=$date shot0=$shot mliste3 >> wb3
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"03",$1"_RL",0.05}' date0=$date shot0=$shot mliste3 >> wb3
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoff",date0,shot0,"03",$1"_RU",0.05}' date0=$date shot0=$shot mliste3 >> wb3
+
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoffa",date0,shot0,"01",$1,0.05}' date0=$date shot0=$shot mliste1 > wball
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoffa",date0,shot0,"02",$1,0.05}' date0=$date shot0=$shot mliste2 >> wball
+awk '{print "/work/00115/gebhardt/maverick/scripts/getwave/rgetwvoffa",date0,shot0,"03",$1,0.05}' date0=$date shot0=$shot mliste3 >> wball
+
+wc wb1 | awk '{print "rmkbatch",$1,"wb1"}' > rt
+chmod +x rt; rt
+mv out.slurm wb1.slurm
+wc wb2 | awk '{print "rmkbatch",$1,"wb2"}' > rt
+chmod +x rt; rt
+mv out.slurm wb2.slurm
+wc wb3 | awk '{print "rmkbatch",$1,"wb3"}' > rt
+chmod +x rt; rt
+mv out.slurm wb3.slurm
+
+sed s/"_"/" "/g mliste1 | awk '{print "python /work/00115/gebhardt/maverick/panacea/Panacea/make_collapsed_frame.py -d",date0,"-o",shot0,"-e 1 -r /work/03946/hetdex/maverick/red1/reductions -i",$3,"-in virus --spectype sky_subtracted"}' date0=$date shot0=$shot > rcofe${date}v$shot
+sed s/"_"/" "/g mliste2 | awk '{print "python /work/00115/gebhardt/maverick/panacea/Panacea/make_collapsed_frame.py -d",date0,"-o",shot0,"-e 2 -r /work/03946/hetdex/maverick/red1/reductions -i",$3,"-in virus --spectype sky_subtracted"}' date0=$date shot0=$shot >> rcofe${date}v$shot
+sed s/"_"/" "/g mliste3 | awk '{print "python /work/00115/gebhardt/maverick/panacea/Panacea/make_collapsed_frame.py -d",date0,"-o",shot0,"-e 3 -r /work/03946/hetdex/maverick/red1/reductions -i",$3,"-in virus --spectype sky_subtracted"}' date0=$date shot0=$shot >> rcofe${date}v$shot
+
+head -1 mliste1 | awk '{print "cp",date0"v"shot0"/exp01*/m*_??.fits /work/03946/hetdex/maverick/red1/reductions/"date0"/virus/virus0000"shot0"/exp01/virus/."}' date0=$date shot0=$shot > rcp0
+head -1 mliste2 | awk '{print "cp",date0"v"shot0"/exp02*/m*_??.fits /work/03946/hetdex/maverick/red1/reductions/"date0"/virus/virus0000"shot0"/exp02/virus/."}' date0=$date shot0=$shot >> rcp0
+head -1 mliste3 | awk '{print "cp",date0"v"shot0"/exp03*/m*_??.fits /work/03946/hetdex/maverick/red1/reductions/"date0"/virus/virus0000"shot0"/exp03/virus/."}' date0=$date shot0=$shot >> rcp0
+

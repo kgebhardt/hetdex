@@ -1,0 +1,38 @@
+rm -f imar.fits imars.fits
+~gebhardt/bin/imars << eof
+$1.fits
+16
+1
+0
+eof
+mv imars.fits oldskyres.fits
+rm -f imar.fits imars.fits
+~gebhardt/bin/imars << eof
+$1.fits
+17
+1
+0
+eof
+mv imars.fits skymod.fits
+~gebhardt/bin/imar << eof
+skymod.fits
+1
+$2.fits
+1
+3
+eof
+mv imar.fits resfrac.fits
+~gebhardt/bin/imar << eof
+oldskyres.fits
+1
+resfrac.fits
+1
+2
+eof
+mv imar.fits newskyres.fits
+rm -f imrep.fits
+~gebhardt/bin/imrepskyres << eof
+$1.fits
+eof
+mv imrep.fits $1.fits
+rm -f imar.def imars.def resfrac.fits skymod.fits
