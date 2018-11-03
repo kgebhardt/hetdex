@@ -1,0 +1,8 @@
+flux_limit is relative_fiber_tp * S/N_50 * Noise / weight_geometry
+
+Noise: is calculated with rspfl3f for a given aperture size
+S/N_50: is based on empirical and simulations, around 8 right now
+relative_fiber_tp: is 1/tp_amp/tp_f2f, where
+tp_amp: is amp-to-amp value at that wavelength (higher number is better)
+tp_f2f: is fiber-to-fiber at that wavelength
+weight_geometry: is the fraction of the aperture covered by fiber
