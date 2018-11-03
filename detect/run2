@@ -1,0 +1,4 @@
+rm out_*
+jobsplitter out
+ls out_*.slurm | awk '{print "sbatch",$1}' > rbatch
+chmod +x rbatch

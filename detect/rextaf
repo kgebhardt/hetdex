@@ -1,0 +1,12 @@
+resdir=/work/00115/gebhardt/maverick/detect/$7/lines/linesres
+ra=$1
+dec=$2
+cd /tmp
+rsp1a2b $1 $2 $3 $4 $5 $6 $7 1.7 3.
+cd $7_$6
+~gebhardt/bin/fitemfull
+#~gebhardt/bin/getsignif
+cd ..
+awk '{if($6>5) print $0,ra0,dec0}' ra0=$ra dec0=$dec $7_$6/lines.out > $resdir/$7_$6.lines
+#awk '{print $0,ra0,dec0}' ra0=$ra dec0=$dec $7_$6/signif.out > $resdir/$7_$6.signif
+rm -rf $7_$6

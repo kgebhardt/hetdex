@@ -1,0 +1,4 @@
+grep $1 ../dithall.use | awk '{s+=1; print "rsp1a2b",$1,$2,2,4500,1000,s,"20180619v012"}' > rt
+jobsplitter rt
+ls rt_*.slurm | awk '{print "sbatch",$1}' > rbatch
+chmod +x rbatch

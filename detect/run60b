@@ -1,0 +1,16 @@
+sn=$1
+sn2=$2
+chi=$3
+cont=$4
+rap=$5
+# awk '{if($5<chio&&$4>sno&&$3>3504&&$3<5496) print $0}' sno=$sn chio=$chi alines | sort -n +3 -4 | awk '{print $0}'> allfit.dat 
+#awk '{if($5<chio&&$4>sno&&$3>3504&&$3<5496) print $0,0}' sno=$sn chio=$chi alines | sort -n +3 -4 | awk '{print $0}'> allfit.dat 
+awk '{if($5<chio&&$4>sno&&$3>3480&&$3<5525) print $0,0}' sno=$sn chio=$chi alines | sort -n +3 -4 | awk '{print $0}'> allfit.dat 
+~gebhardt/bin/matchradec
+awk '{if($4>sn2o) print $0}' sn2o=$sn2 radec.out > j1
+mv j1 radec.out
+awk '{s+=1; print "rsp3f",$1,$2,rapo,$3,50,s,"dateandshot",1.7,3.,3.5,0,1,1,$4,$5}' rapo=$rap radec.out > rtmpl
+rm -f rtmpl_*
+jobsplitter2 rtmpl 200 5 '00:20:00'
+ls rtmpl_*.slurm | awk '{print "sbatch",$1}' > rbatch2
+chmod +x rbatch2

@@ -1,0 +1,20 @@
+cd signif
+ls *.signif | grep $1 > list
+
+grep LL list > slist
+~gebhardt/bin/getsignifa
+cp out "sig"$1"_LL.dat"
+
+grep LU list > slist
+~gebhardt/bin/getsignifa
+cp out "sig"$1"_LU.dat"
+
+grep RL list > slist
+~gebhardt/bin/getsignifa
+cp out "sig"$1"_RL.dat"
+
+grep RU list > slist
+~gebhardt/bin/getsignifa
+cp out "sig"$1"_RU.dat"
+
+rm *$1*.signif

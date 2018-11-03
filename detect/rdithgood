@@ -1,0 +1,2 @@
+grep -v multi_020_095_004_RU ../dithall.use > jd1
+grep -v multi_308_057_024_LU jd1 > dithall.use

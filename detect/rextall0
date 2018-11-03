@@ -1,0 +1,4 @@
+amp=$1
+obsname=$2
+grep $1 dithall.use | awk '{s+=1; print "rextaf",$1,$2,1.5,4500,1000,s,obsname0}' obsname0=$obsname >> rtall
+grep $1 dithall.use | awk '{s+=1; print "rsp7",$1,$2,1.5,4500,1000,s,obsname0,$8}' obsname0=$obsname amp0=$amp | sed s/".ixy"// >> rtsigall

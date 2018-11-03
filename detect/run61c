@@ -1,0 +1,6 @@
+cat ras*/out1 | awk '{s+=1; print "rsp3",$1,$2,3,$8,50,s,"dateandshot",1.7,3,$6,$7}' > rtmpnew
+rm -f rtmpnew_*
+jobsplitter rtmpnew
+ls rtmpnew_*.slurm | awk '{print "sbatch",$1}' > rbatch3
+chmod +x rbatch3
+rm -r ras*

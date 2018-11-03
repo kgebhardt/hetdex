@@ -1,0 +1,2 @@
+id=$1
+awk '{if($7==id0) print $0}' id0=$id rt 

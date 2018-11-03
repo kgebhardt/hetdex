@@ -1,0 +1,16 @@
+sn=$1
+sn2=$2
+chi=$3
+cont=$4
+rap=$5
+awk '{if($6>sno) print $0}' sno=$sn linesres/2*lines > alines
+rm -r linesres
+awk '{if($8<chio&&$7<conto&&$6>sno&&$2>3504&&$2<5496) print $0}' sno=$sn chio=$chi conto=$cont alines | sort -n +5 -6 | awk '{print $9,$10,$2,$6}'> allfit.dat 
+matchradec
+awk '{if($4>sn2o) print $0}' sn2o=$sn2 radec.out > j1
+mv j1 radec.out
+awk '{s+=1; print "rsp5",$1,$2,rapo,$3,50,s,"dateandshot",1.7,3.}' rapo=$rap radec.out > rtmpl
+rm -f rtmpl_*
+jobsplitter rtmpl
+ls rtmpl_*.slurm | awk '{print "sbatch",$1}' > rbatch2
+chmod +x rbatch2

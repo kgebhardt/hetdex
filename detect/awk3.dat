@@ -1,0 +1,8 @@
+awk '{if($6>4) print $0}' lineres/2*lines > j1
+awk '{print $9,$10,$2,$6}' j1 > allfit.dat
+awk '{if($8<10&&$7<100&&$6>7&&$2>3504&&$2<5496) print $0}' j1 | sort -n +5 -6 | awk '{print $9,$10,$2,$6}'> allfit.dat 
+matchradec
+awk '{s+=1; print "rsp1a2b",$1,$2,2,$3,50,s,"20180619v012"}' radec.out > rtmpl
+jobsplitter rtmpl
+ls rtmpl_*.slurm | awk '{print "sbatch",$1}' > rbatch2
+chmod +x rbatch2

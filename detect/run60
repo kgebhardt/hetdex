@@ -1,0 +1,4 @@
+cat linesres/*lines > alines
+rm linesres/*
+echo "Try this: run60b 5.5 6.0 2.5 100 3"
+echo "These are: sn1 sn2 chi contin wave_aperture"

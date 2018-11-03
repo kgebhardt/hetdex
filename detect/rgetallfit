@@ -1,0 +1,8 @@
+cd $1
+cp ../rmatchid .
+grep . 2*.lines > j1
+sed s/_/" "/ j1 | sed s/"\."/" "/ | awk '{print "rmatchid",$2}' > rtmp
+chmod +x rtmp
+rtmp > j2
+paste j1 j2 | awk '{print $11,$12,$3,$7}' > allfit.dat
+../matchradec

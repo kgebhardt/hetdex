@@ -1,0 +1,39 @@
+# ! /bin/bash
+
+#takes an input file and splits it into many -n 100 job files
+
+nlines=`wc $1 | awk '{print $1}'`
+
+echo "Splitting $1 with $nlines lines into separate -n $djob count jobs"
+djob=200
+start=1
+end=$djob
+
+jobcount=1
+
+while [ "$end" -le "$nlines" ]; do	
+      awk -v start="$start" -v end="$end" 'NR==start, NR==end {print $0}' $1 > "$1"_"$jobcount".run
+      cp template.slurm "$1"_"$jobcount".slurm
+      sed -i s/'-n 100'/"-n $djob"/ "$1"_"$jobcount".slurm
+      sed -i s/'template'/"$1"_"$jobcount".run/  "$1"_"$jobcount".slurm
+      sed -i s/'04:00:00'/'00:06:00'/ "$1"_"$jobcount".slurm 
+      jobcount=$[$jobcount+1]
+      start=$[$start+$djob]
+      end=$[$end+$djob]
+      echo "$start $end $jobcount"
+done
+
+awk -v start="$start" -v end="$nlines" 'NR==start, NR==end {print $0}' $1 > "$1"_"$jobcount".run
+
+n=$(echo  $end-$nlines | bc)  
+#add empty lines to job file to reach njob (usually 100)
+
+for i in `seq 1 $n`; do
+    echo 'echo "This is a filler line"' >> "$1"_"$jobcount".run 
+    let i=i+1
+done
+
+cp template.slurm "$1"_"$jobcount".slurm
+sed -i s/'-n 100'/"-n $djob"/ "$1"_"$jobcount".slurm
+sed -i s/'template'/"$1"_"$jobcount".run/  "$1"_"$jobcount".slurm
+sed -i s/'04:00:00'/'00:06:00'/ "$1"_"$jobcount".slurm
