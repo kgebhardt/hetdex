@@ -1,0 +1,9 @@
+~gebhardt/bin/ravgsp0 $1 $2 $3 $4 $5 $6 $7
+cd $7_$6
+paste s5 l1 | awk '{print $1,$2,$3,$4,$13,$14,$15,$10}' > in
+~gebhardt/bin/fit2dpsf << eof
+$1 $2
+eof
+paste list out | awk '{print $1,$10,$11}' > list2
+~gebhardt/bin/sumsign
+rm -rf sp_* spavg*

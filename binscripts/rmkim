@@ -1,0 +1,10 @@
+cp s6 j4
+rm -f image.fits
+~gebhardt/bin/mkimage
+mv image.fits im1.fits
+paste s6 out2d | awk '{print $1,$2,$3-$15}' > j4
+~gebhardt/bin/mkimage
+mv image.fits im2.fits
+paste s6 out2d | awk '{print $1,$2,$15}' > j4
+~gebhardt/bin/mkimage
+mv image.fits im3.fits

@@ -1,0 +1,2 @@
+grep $1 ~gebhardt/20????sci | grep 103LL | sed s/:/" "/ | awk '{print $2,$3,$6,$4,$5,$7,$8,$9}'
+# ~gebhardt/wcs/wcstools-3.9.2/bin/gethead -p /work/03946/hetdex/maverick/$1/virus/virus000*/*/virus/*103LL*sci.fits OBJECT MJD EXPTIME DARKTIME TRAJCRA TRAJCDEC PARANGLE

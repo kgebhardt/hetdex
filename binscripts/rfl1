@@ -1,0 +1,10 @@
+rm -rf $7_$6
+mkdir -p $7_$6
+cd $7_$6
+grep $7 /work/00115/gebhardt/maverick/flim/all/para.txt | awk '{print $2,$3,$4,$5,$6,$7,$8,$9}' > para.dat
+~gebhardt/bin/rgetfl $1 $2 $3 $4 $5 $7_$6
+cp /work/00115/gebhardt/maverick/detect/deephf/rspall .
+echo "rspall" $4 > runt0
+cp /work/00115/gebhardt/maverick/detect/deephf/rfitsp .
+chmod +x runt0
+~gebhardt/bin/sumsplines

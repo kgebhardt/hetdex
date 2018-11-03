@@ -1,0 +1,54 @@
+ra=$1
+dec=$2
+~gebhardt/bin/ravgsp0 $1 $2 $3 $4 $5 $6 $7 $9
+cd $7_$6
+if [ -e list ]
+ then
+~gebhardt/bin/rgetadc
+paste s5 l1 a1 | awk '{print $1,$2,$3,$4,$14,$15,$16,$11,$17,$5}' > in
+echo $8 > fwhm.fix
+~gebhardt/bin/fit2dfix << eof
+$1 $2
+/vcps
+eof
+mv pgplot.ps $7_$6_2d.ps
+paste list out | awk '{print $1,$10,$11,$12,$13,$14,$15,$16}' > list2
+mv out out2d
+~gebhardt/bin/rmkim
+~gebhardt/bin/sumlineserr
+sed s/rawksp2/rawksp3/ rjunk > rjunk2
+awk '{print $1,$3,$5,$2,$4}' splines.out > fitghsp.in
+awk '{print $1,$3,$5,$2,$4}' splines.out > $7_$6specf.dat
+
+~gebhardt/bin/fitems << eof
+$4
+/vcps
+eof
+mv pgplot.ps $7_$6_2dn.ps
+mv lines.out $7_$6_2d.res
+~gebhardt/bin/fitemmc << eof
+$4
+eof
+awk '{print ra0,dec0,$0}' ra0=$ra dec0=$dec mc2.out > $7_$6mc.res
+echo "mc.res: RA DEC wave d_wave amp d_amp sigma d_sigma con d_con ston d_ston chi d_chi" >> readme.headers
+
+if [ -e spavg101.dat ]
+then
+cat spavg*.dat > spavg.all
+rm -f spavg*.dat
+fi
+
+else
+ echo " "
+fi
+if [ -e spavg.all ]
+then
+awk '{if($1==0) print $0}' spavg.all  | wc > j1
+wc spavg.all > j2
+paste j1 j2 | awk '{print $1,$4}' > j3
+echo " "
+awk '{if($1==$2) print "NO VIRUS DATA AVAILABLE"}' j3
+paste spavg.all l1 | awk '{if($1!=0) print $10}' | sort -n | head -1 > j1
+awk '{print "Closest fiber is",$1,"arcseconds away"}' j1
+echo " "
+fi

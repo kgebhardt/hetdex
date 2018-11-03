@@ -1,0 +1,7 @@
+name=$1
+~gebhardt/bin/biwt << eof
+$1
+2
+eof
+awk '{print "~gebhardt/bin/rnormbiwt2",name0,$2}' name0=$name biwt.out > rt
+chmod +x rt; rt

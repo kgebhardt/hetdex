@@ -1,0 +1,13 @@
+v3=$3
+v4=$4
+v5=$5
+v6=$6
+v7=$7
+v8=$8
+v9=$9
+~gebhardt/bin/rsp1b $1 $2 $3 $4 $5 $6 $7
+~gebhardt/bin/rsp2 $1 $2 $3 $4 $5 $6 $7 $8 $9
+awk '{print "~gebhardt/bin/rsp2",$1,$2,v3o,v4o,v5o,v6o,v7o,v8o,v9o}' v3o=$v3 v4o=$v4 v5o=$v5 v6o=$v6 v7o=$v7 v8o=$v8 v9o=$v9 $7_$6/out2 > rtrsp
+cp $7_$6/out2 $7_$6/out2.1
+paste $7_$6/in $7_$6/list > $7_$6/inorig
+chmod +x rtrsp; rtrsp

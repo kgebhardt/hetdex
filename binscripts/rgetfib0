@@ -1,0 +1,7 @@
+ra=$1
+dec=$2
+rad1=600
+rad2=3
+awk '{if((3600.*sqrt((cos(dec0/57.3)*($2*15-ra0))^2+($3-dec0)^2))<rad0) print "/work/00115/gebhardt/maverick/sci/panacea/planradec/hf/rfib1",$6"v"$7,ra0,dec0,radp,$5}' ra0=$ra dec0=$dec rad0=$rad1 radp=$rad2 /work/00115/gebhardt/maverick/sci/panacea/planradec/hf/runhf > rj
+chmod +x rj
+rj

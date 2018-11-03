@@ -1,0 +1,4 @@
+~gebhardt/bin/fit2dc << eof
+$1 $2
+/vcps
+eof

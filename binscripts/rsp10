@@ -1,0 +1,37 @@
+dir1=$(pwd)
+resdir=$dir1/ras$7_$6
+# resdir=/work/00115/gebhardt/maverick/detect/$7/lines/linesres
+ra=$1
+dec=$2
+rap=$3
+wv=$4
+wr=$5
+f1=$6
+f2=$7
+fw=$8
+wc=$9
+nstep=${10}
+step=${11}
+rm -rf ras$7_$6
+mkdir ras$7_$6
+cd ras$7_$6
+mkdir -p /tmp/ras$7_$6
+cd /tmp/ras$7_$6
+cp ~gebhardt/bin/rsaveout0 .
+cp ~gebhardt/bin/rsaveout2 .
+cp ~gebhardt/bin/rsaveout0b .
+cp ~gebhardt/bin/rsaveout2b .
+~gebhardt/bin/rsp1b $1 $2 $3 $4 $5 $6 $7
+~gebhardt/bin/mkraster << eof
+$1 $2 ${11} ${10}
+eof
+awk '{print "rsp2fast",$1,$2,rapo,wvo,wro,f1o,f2o,fwo,wco,"; rsaveout0b",$1,$2,wvo,f1o,f2o,sigo}' sigo=$sig rapo=$rap wvo=$wv wro=$wr f1o=$f1 f2o=$f2 fwo=$fw wco=$wc out > rtmp
+chmod +x rtmp
+rm -f outall
+rtmp
+awk '{if(sqrt(($2-wvo)^2)<3) print $0}' wvo=$wv outall > j1
+sort -g +5 -6 j1 | tail -1 > out1
+rm -r $7_$6 rsave* j1 out
+mv * $resdir/.
+cd -
+rm -r /tmp/ras$7_$6

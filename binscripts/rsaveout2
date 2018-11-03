@@ -1,0 +1,14 @@
+sn=5.5
+chi=4.5
+cont=100.
+ra=$1
+dec=$2
+f1=$3
+f2=$4
+sigma=$5
+cd ${f2}_${f1}
+~gebhardt/bin/fitemfulls << eof
+$sigma
+eof
+# awk '{if($6>4) print $0,ra0,dec0,sig0}' sig0=$sigma ra0=$ra dec0=$dec lines.out >> ../outall
+awk '{if($8<chio&&$7<conto&&$6>sno&&$2>3505&&$2<5495) print $0,ra0,dec0,sig0}' sno=$sn chio=$chi conto=$cont sig0=$sigma ra0=$ra dec0=$dec lines.out >> ../outall

@@ -1,0 +1,4 @@
+name=$1
+fac=$2
+awk '{print $1,$2/fac0}' fac0=$fac $name > j1
+mv j1 $name
