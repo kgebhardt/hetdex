@@ -1,0 +1,16 @@
+mkdir exp01o
+mkdir exp02o
+mkdir exp03o
+mkdir exp01
+mkdir exp02
+mkdir exp03
+ln -s /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/exp01/virus/multi*fits exp01o/.
+ln -s /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/exp02/virus/multi*fits exp02o/.
+ln -s /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/exp03/virus/multi*fits exp03o/.
+# ls exp01o/mult*LL*fits | sed s/"\/"/" "/g | sed s/_LL.fits@// | awk '{print "runsim",$2}' > runsim0
+ls exp01o/mult*LL*fits | sed s/"\/"/" "/g | sed s/_LL.fits// | awk '{print "runsim",$2}' > runsim0
+ls exp01o/mult*LL*fits | sed s/"\/"/" "/g | sed s/_LL.fits// | awk '{print "runsimn",$2}' > runsimn0
+awk '{s+=1; print "mkran",$2,(s-1)*30+2}' runsim0 > mkran0
+~gebhardt/bin/getnormexp << eof
+$1v$2
+eof

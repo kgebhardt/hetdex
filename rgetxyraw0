@@ -1,0 +1,7 @@
+cat -b l1 | sort -g +7 -8 | head -1 | awk '{print "grep tmp"100+$1" rextspsim0"}' > rj1
+chmod +x rj1
+rj1 > j1
+awk '{print $3}' *mc.res > j2
+paste j1 j2 | awk '{print $2,$3,$9}'
+
+

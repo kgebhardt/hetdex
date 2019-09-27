@@ -12,5 +12,7 @@ eof
 mv imrep.fits  tmp.fits 
 rskyftf tmp
 runsm 11 5
+#runsm 17 5
+#runsm 21 -5
 rimbox newsky
 mv imar.fits $5.fits

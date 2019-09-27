@@ -1,0 +1,8 @@
+rm -f ran.out imadd.fits imrep.fits rep.fits
+~gebhardt/bin/imaddem << eof
+1
+eof
+mv imadd.fits rep.fits
+~gebhardt/bin/imrepm << eof
+tmp.fits
+eof

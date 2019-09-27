@@ -1,0 +1,24 @@
+dir1=$(pwd)
+resdir=$dir1"/fitres"
+n1=$6
+n2=$7
+cd /tmp
+mkdir -p mc$7_$6
+cd mc$7_$6
+~gebhardt/bin/rsp1b $1 $2 $3 $4 $5 $6 $7
+~gebhardt/bin/rsp2fix $1 $2 $3 $4 $5 $6 $7 $8 $9
+
+cd $7_$6
+cp /work/00115/gebhardt/maverick/scripts/rsp/rgetxyrawb0 .
+cp /work/00115/gebhardt/maverick/scripts/rsp/rgetxyrawb .
+cp /work/00115/gebhardt/maverick/scripts/rsp/rextrawb .
+rgetxyrawb0
+awk '{print $0,n10,n20}' n20=$n2 n10=$n1 $7_$6mc.res > inres
+awk '{print $1,$2,$3,$4,"\""$5"\""}' rj2 > inres2
+~gebhardt/bin/formatres
+cp outres $resdir/$7_$6mc.res
+paste l1 list2 > $7_$6.info
+cp $7_$6.info $resdir/.
+cp $7_$6specf.dat $resdir/.
+cd ../..
+rm -r mc$7_$6

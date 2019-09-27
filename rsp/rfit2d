@@ -1,0 +1,36 @@
+ra=$1
+dec=$2
+n1=$7
+n2=$6
+name=$7_$6
+~gebhardt/bin/rsp1b $1 $2 $3 $4 $5 $6 $7
+~gebhardt/bin/rsp2fix $1 $2 $3 $4 $5 $6 $7 $8 $9
+cd $7_$6
+cp ../norm.dat .
+~gebhardt/bin/getnormexp << eof
+$name
+eof
+rextsp0
+cd ..
+rm -f outall
+cp /work/00115/gebhardt/maverick/scripts/rsp/rfitfw .
+cp /work/00115/gebhardt/maverick/scripts/rsp/rfitfw2 .
+rfitfw $1 $2 $6 $7 -1.70
+rfitfw $1 $2 $6 $7 -1.75
+rfitfw $1 $2 $6 $7 -1.80
+rfitfw $1 $2 $6 $7 -1.82
+rfitfw $1 $2 $6 $7 -1.84
+rfitfw $1 $2 $6 $7 -1.86
+rfitfw $1 $2 $6 $7 -1.88
+rfitfw $1 $2 $6 $7 -1.90
+rfitfw $1 $2 $6 $7 -1.92
+rfitfw $1 $2 $6 $7 -1.94
+rfitfw $1 $2 $6 $7 -1.96
+rfitfw $1 $2 $6 $7 -1.98
+rfitfw $1 $2 $6 $7 -2.00
+rfitfw $1 $2 $6 $7 -2.10
+rfitfw $1 $2 $6 $7 -2.20
+
+sort -g +5 -6 outall | head -1 | awk '{print "rfitfw2",rao,deco,n2o,n1o,-$7}' rao=$ra deco=$dec n1o=$n1 n2o=$n2 > rj3
+chmod +x rj3
+rj3

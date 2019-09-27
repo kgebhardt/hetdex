@@ -11,16 +11,21 @@ $3
 eof
 mv out rt
 chmod +x rt
-cp ~gebhardt/bin/rspfl3f .
+cp /work/00115/gebhardt/maverick/scripts/rsp/rspfl3f .
+#cp ~gebhardt/bin/rspfl3f .
 cp /work/00115/gebhardt/maverick/scripts/flim/run10 .
 cp /work/00115/gebhardt/maverick/scripts/flim/run11 .
 cp /work/00115/gebhardt/maverick/scripts/flim/raddwcs .
+cp /work/00115/gebhardt/maverick/scripts/flim/rmapcor .
+cp /work/00115/gebhardt/maverick/scripts/flim/rmspec .
 mkdir -p spec
 rt
 cd spec
 wc *.spec | awk '{if($1==0) print "rm",$4}' > rtmp; chmod +x rtmp; rtmp
 cd ..
 cat spec/*.spec > all.spec
+rmapcor
+mv biwt.out $resdir/$3_$4.apcor
 awk '{print $0,ra0,dec0}' ra0=$ra dec0=$dec run10 > run10tmp
 chmod +x run10tmp
 run10tmp
@@ -29,5 +34,5 @@ rm -f image3d.fits
 ~gebhardt/bin/mkimage3d
 raddwcs $1 $2
 mv image3d.fits $resdir/$3_$4_3d.fits
-cd $resdir
+cd /tmp
 rm -rf $3_$4

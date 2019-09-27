@@ -1,0 +1,9 @@
+/work/00115/gebhardt/maverick/scripts/rsp/rsp1bsim $1 $2 $3 $4 $5 $6 $7
+~gebhardt/bin/rsp2fix $1 $2 $3 $4 $5 $6 $7 $8 $9
+
+cd $7_$6
+cp /work/00115/gebhardt/maverick/scripts/rsp/rgetxy* .
+cp /work/00115/gebhardt/maverick/scripts/rsp/rextraw .
+rgetxyraw0
+cat rj2
+mv imout.fits $7_$6raw.fits

@@ -17,7 +17,7 @@
 #
 #requires template.slurm, this will be copied over from erin's bin
 
-cp temp.slurm template.slurm
+cp ~gebhardt/template.slurm .
 
 #argument checking:
 

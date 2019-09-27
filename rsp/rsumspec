@@ -1,0 +1,14 @@
+#cd $2_$1
+#cp $2_$1specf.dat ../sp$1_2.dat
+#cp l1 ../$1.list
+#mv list listo
+#ls $2_$1specf.dat > list
+cp fitres/$2_$1.spec sp$1_2.dat
+cp fitres/$2_$1.list $1.list
+ls sp$1_2.dat > list
+rm -f sumspec.out
+~gebhardt/bin/sumspec
+cp sumspec.out sp$1_100.dat
+
+# get the aperture correction
+/work/00115/gebhardt/maverick/scripts/rsp/rgetsumfib $2 $1 > ../apsum$2_$1

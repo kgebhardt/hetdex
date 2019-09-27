@@ -1,0 +1,72 @@
+mkdir $1
+cd $1
+cp /work/00115/gebhardt/maverick/scripts/sim/run0 .
+cp /work/00115/gebhardt/maverick/scripts/sim/run1b .
+cp /work/00115/gebhardt/maverick/scripts/sim/run1bn .
+cp ../$1.ran rannum.dat
+
+~gebhardt/bin/mkranem
+cp ran.out inlist
+
+run0 ../exp01o/$1_LL
+echo "0 0" > offset
+run1bn
+mv imrep.fits ../exp01/$1_LL.fits
+cp outlist ../$1_LL.out
+
+run0 ../exp01o/$1_LU
+echo "0 0" > offset
+run1bn
+mv imrep.fits ../exp01/$1_LU.fits
+cp outlist ../$1_LU.out
+run0 ../exp01o/$1_RL
+echo "0 0" > offset
+run1bn
+mv imrep.fits ../exp01/$1_RL.fits
+cp outlist ../$1_RL.out
+run0 ../exp01o/$1_RU
+echo "0 0" > offset
+run1bn
+mv imrep.fits ../exp01/$1_RU.fits
+cp outlist ../$1_RU.out
+
+
+run0 ../exp02o/$1_LL
+echo "-1.27 0.73" > offset
+run1bn
+mv imrep.fits ../exp02/$1_LL.fits
+cat outlist >> ../$1_LL.out
+run0 ../exp02o/$1_LU
+run1bn
+mv imrep.fits ../exp02/$1_LU.fits
+cat outlist >> ../$1_LU.out
+run0 ../exp02o/$1_RL
+run1bn
+mv imrep.fits ../exp02/$1_RL.fits
+cat outlist >> ../$1_RL.out
+run0 ../exp02o/$1_RU
+run1bn
+mv imrep.fits ../exp02/$1_RU.fits
+cat outlist >> ../$1_RU.out
+
+run0 ../exp03o/$1_LL
+echo "-1.27 -0.73" > offset
+run1bn
+mv imrep.fits ../exp03/$1_LL.fits
+cat outlist >> ../$1_LL.out
+run0 ../exp03o/$1_LU
+run1bn
+mv imrep.fits ../exp03/$1_LU.fits
+cat outlist >> ../$1_LU.out
+run0 ../exp03o/$1_RL
+run1bn
+mv imrep.fits ../exp03/$1_RL.fits
+cat outlist >> ../$1_RL.out
+run0 ../exp03o/$1_RU
+run1bn
+mv imrep.fits ../exp03/$1_RU.fits
+cat outlist >> ../$1_RU.out
+
+cd ..
+cp $1/rannum.dat $1.ran
+rm -r $1

@@ -1,0 +1,8 @@
+awk '{print $7}' all.spec | sort -g | tail -10000 > j1
+~gebhardt/bin/biwt << eof
+j1
+1
+eof
+awk '{print "rmspec",$2}' biwt.out > rj
+chmod +x rj
+rj

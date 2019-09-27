@@ -1,0 +1,6 @@
+date=$1
+shot=$2
+rm -f m*fits
+cp /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/exp01/virus/m*fits .
+ls m*fits | awk '{print "rcalfib1",date0,shot0,$1,"exp01"}' date0=$date shot0=$shot | sed s/.fits// > rt1
+chmod +x rt1

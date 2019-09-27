@@ -1,0 +1,27 @@
+Things to change to add ifus:
+
+REDUCE:
+rtwi666b (and the slurm)
+rscin666 (and the slurm)
+pixel_flat
+bias
+dark
+fiberloc
+
+SHIFTS:
+runrd0
+mktot
+cofes
+
+FPLANE in shifts
+
+DETECT:
+ralltmp
+rallt.slurm
+rifub
+addin files in scripts/coords (readme)
+rcleandtih in detect/scripts scripts2
+
+CAL_SCRIPT:
+rallt2tmp
+

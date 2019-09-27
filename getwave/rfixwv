@@ -1,13 +1,20 @@
+# gets the new wavelength distortion
 rm -rf newwave
 mkdir -p newwave
 cd newwave
 cp ../$1.fits tmp.fits
 cp ../$1_fbavg.fits fbavg.fits
 cp /work/00115/gebhardt/maverick/scripts/getwave/* .
+
+# this just writes multi to individual fits
 rskyftf tmp
 cp sky.fits newsky.fits
+
+# this is only running runsm, so maybe skip this?
 run11 1.0 1.0 1.0 1.0 e
 cp out skymod
+
+# figure out which fibers to reject
 ls e*.dat | awk '{print "rwvoff",$1}' > rt
 chmod +x rt; rt
 grep . *.min | sed s/"\."/" "/ | sed s/e// | sed s/":"/" "/ | awk '{print $4}' > j1
@@ -15,14 +22,20 @@ grep . *.min | sed s/"\."/" "/ | sed s/e// | sed s/":"/" "/ | awk '{print $4}' >
 j1
 1
 eof
+
+# removes those with 3x biweight scale
 awk '{print "rcut",$2+3*$3}' biwt.out > rt2
 grep . *.min | sed s/"\."/" "/ | sed s/e// | sed s/":"/" "/ | awk '{print $1,$3,1,$4}' > j1
 chmod +x rt2; rt2
+
+# now smooth the wavelength distortion across fibers
 cp j1 tmp
 ~gebhardt/bin/smline << eof
 /vcps
 $2
 eof
+
+# correct the wavelength
 mv smline.out wvfix.dat
 rm -f imars.fits
 ~gebhardt/bin/imfixwv << eof

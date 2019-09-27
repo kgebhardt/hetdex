@@ -17,7 +17,7 @@
 #
 #requires template.slurm, this will be copied over from erin's bin
 
-cp temp.slurm template.slurm
+cp templatess.slurm template.slurm
 
 #argument checking:
 
@@ -93,6 +93,7 @@ while [ "$end" -le "$nlines" ]; do
       start=$[$start+$djob]
       end=$[$end+$djob]
       echo "$start $end $jobcount"
+      chmod a+x *.run
 done
 
 awk -v start="$start" -v end="$nlines" 'NR==start, NR==end {print $0}' tmpjs > "$1"_"$jobcount".run
@@ -108,4 +109,5 @@ done
 cp template.slurm "$1"_"$jobcount".slurm
 sed -i s/'-n 100'/"-n $djob"/ "$1"_"$jobcount".slurm
 sed -i s/'template'/"$1"_"$jobcount".run/  "$1"_"$jobcount".slurm
-sed -i s/'04:00:00'/$time/ "$1"_"$jobcount".slurm
+sed -i s/'24:00:00'/$time/ "$1"_"$jobcount".slurm
+chmod a+x *.run

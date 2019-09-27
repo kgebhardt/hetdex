@@ -1,0 +1,9 @@
+rm -f tmp*dat
+rcalfib2 $1 $2 $3 $4 > rt2
+chmod +x rt2
+rt2
+rm -f imrep.fits
+~gebhardt/bin/imaddcalfib << eof
+$3.fits
+eof
+mv imrep.fits $3.fits

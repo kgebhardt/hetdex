@@ -1,0 +1,1000 @@
+  126  squeue -n HETDEX
+  127  exit
+  128  cdh
+  129  cd 20180706/virus/virus0000001/exp01/virus/
+  130  ls
+  131  ls *LL.fits
+  132   *LL*.fits
+  133  ls *LL.fits | wc
+  134  ls *LL.fits
+  135  ls *LL*.fits
+  136  ls *LL*.fits | wc
+  137  gethead *LL*.fits IFUSLOT SPECID
+  138  gethead *LL*.fits IFUSLOT SPECID | awk '{print $2,$3}'
+  139  exit
+  140  cdw
+  141  cd gtest/
+  142  ls reductions/20180624/virus/virus0000008/exp01/virus/m*fits
+  143  ls reductions/20180624/virus/virus0000008/exp01/virus/m*fits | awk '{print "rimsect",$1}'
+  144  ls reductions/20180624/virus/virus0000008/exp01/virus/m*fits | awk '{print "rimsect",$1}' | sed s/.fits//
+  145  ls reductions/20180624/virus/virus0000008/exp01/virus/m*fits | awk '{print "rimsect",$1}' | sed s/.fits// > run11
+  146  chmod +x run11
+  147  em -nw rimsect
+  148  imars
+  149  imars
+  150  head run11
+  151  sed s/"\/"/" "/g run11
+  152  sed s/"\/"/" "/g run11 | awk '{print $8}'
+  153  sed s/"\/"/" "/g run11 | awk '{print $8}' > j1
+  154  paste run11 j1
+  155  paste run11 j1 > j2
+  156  mv j2 run11
+  157  head run11
+  158  em -nw rimsect 
+  159  chmod +x run11
+  160  chmod +x rimsect
+  161  run11
+  162  em -nw rimsect
+  163  rbak
+  164  cd ..
+  165  ls
+  166  cd test6
+  167  ls
+  168  cd ..
+  169  cd getres
+  170  ls
+  171  cd twis
+  172  ls
+  173  l multi_324_062_055_RU
+  174  ls multi_324_062_055_RU
+  175  ls mulit*/multi*_??.fits
+  176  ls multi*/multi*_??.fits
+  177  pwd
+  178  hist
+  179  ls multi*/multi*_??.fits | awk '{print "rimsect",$1}' | sed s/.fits// 
+  180  ls multi*/multi*_??.fits | awk '{print "rimsect",$1}' | sed s/.fits// > run61
+  181  cp ../../gtest/rimsect rimsect
+  182  hist
+  183  sed s/"\/"/" "/g run61 | awk '{print $3}' > j1
+  184  head j1
+  185  paste run61 j1
+  186  paste run61 j1 > j2
+  187  mv j2 run61
+  188  rimsect multi_326_082_034_RU/multi_326_082_034_RUmulti_326_082_034_RU
+  189  head run61
+  190  rimsect multi_008_093_054_LL/multi_008_093_054_LLmulti_008_093_054_LL
+  191  awk '{print $1,$2,$3}' run61
+  192  awk '{print $1,$2,$3}' run61 > j2
+  193  mv j2 run61
+  194  rimsect multi_326_082_034_RU/multi_326_082_034_RU multi_326_082_034_RU
+  195  run61
+  196  chmod +x run61
+  197  run61
+  198  pwd
+  199  ls
+  200  ls m*s.fits
+  201  rm m*s.fits
+  202  ls
+  203  more rgetnewres0
+  204  more rgetnewres
+  205  ls *.slurm
+  206  more rscin20180624.slurm
+  207  ls *.slurm
+  208  more rt2.slurm 
+  209  cat rgetnewres0
+  210  cat rgetnews
+  211  cat rgetnewres
+  212  cp rgetnewres rgetnewres.orig
+  213  em -nw rgetnewres
+  214  sbatch rt2.slurm 
+  215  more rt2.slurm 
+  216  wc rgetnewres0
+  217  squeue -n HETDEX
+  218  tail -f HETDEX.o827893 
+  219  ll -h HETDEX.o827893 
+  220  ll -h HETDEX.o827893 
+  221  tail -f HETDEX.o827893 
+  222  tail -f HETDEX.o827893 
+  223  ll -h HETDEX.o827893 
+  224  squeue -n HETDEX
+  225  ls
+  226  cat multi_012_106_033_RU/?.biwt
+  227  cat multi_012_106_033_LL/?.biwt
+  228  cat multi_012_106_033_LU/?.biwt
+  229  more HETDEX.o827893 
+  230  rm HETDEX.o827893 
+  231  run61
+  232  ls
+  233  more rgetnewres
+  234  ls /work/00115/gebhardt/maverick/gtest/reductions/20180624/virus/virus0000008/exp01/virus
+  235  cdw
+  236  cd panacea/Panacea/
+  237  ls -t
+  238  em -nw refine_reduction.py 
+  239  em -nw refine_reduction.py 
+  240  rbak
+  241  ls
+  242  em -nw refine_reduction.py 
+  243  ls
+  244  em -nw refine_reduction.py 
+  245  ls
+  246  rbak
+  247  ls
+  248  rm \#refine_reduction.py# 
+  249  ls
+  250  cdw
+  251  cd panacea/Panacea/
+  252  git pull
+  253  cdh
+  254  cd red1
+  255  ls reductions/20180624/virus/virus0000001/exp01/virus/*twi.png
+  256  ls reductions/20180624/virus/virus0000001/exp01/virus/*072*twi.png
+  257  pwd
+  258  cdw
+  259  ls
+  260  cd hetdark
+  261  ls
+  262  ls all
+  263  more runbias
+  264  more runbias0
+  265  ls
+  266  cd all
+  267  ls
+  268  ls 084LL
+  269  pwd
+  270  cd ..
+  271  ls
+  272  ls 20171221
+  273  mkdir 20180702
+  274  cd 20180702/
+  275  cp ../20171221/r* .
+  276  head runbias0
+  277  wc runbias0
+  278  cat runbias
+  279  cat ../script/runall
+  280  cat ../script/run0
+  281  ls
+  282  ls rcp0
+  283  cat rcp
+  284  em -nw rcp
+  285  rcp 075
+  286  ls 075
+  287  ls 075/*LL*
+  288  ls 075/*LL* | wc
+  289  runbias 075
+  290  ls 
+  291  ls 075
+  292  ls 075/??.fits
+  293  pwd
+  294  pwd
+  295  cdw
+  296  cd hetbias/
+  297  ls
+  298  cd all/
+  299  ls
+  300  ls 20180408
+  301  ls 20180408/075
+  302  pwd
+  303  cdw
+  304  cd hetdark/
+  305  ls
+  306  cd 20180702/
+  307  ls
+  308  cat rcp
+  309  cat rcp0
+  310  cat ../../ifulist
+  311  cat ../../*/ifulist
+  312  ls ../../*/ifulist
+  313  wc ../../*/ifulist
+  314  pwd
+  315  cd ....
+  316  cd ../..
+  317  ls
+  318  ls */ifulist
+  319  ls */*/ifulist
+  320  wc getres/all/ifulist
+  321  cp getres/all/ifulist .
+  322  ls
+  323  pwd
+  324  cd hetdark/20180702
+  325  ls
+  326  head rcp0
+  327  cat ../../ifulist 
+  328  awk '{print "rcp",$1}' ../../ifulist 
+  329  awk '{print "rcp",$1}' ../../ifulist  > rcp0
+  330  rcp0
+  331  ls
+  332  head runbias0
+  333  awk '{print "runbias",$1}' ../../ifulist  > runbias0
+  334  em -nw runb.slurm 
+  335  sbatch runb.slurm
+  336  rbak
+  337  squeue -n HETDEX
+  338  ls
+  339  ls 106
+  340  squeue -n HETDEX
+  341  ls 106
+  342  ls 106
+  343  ls 106
+  344  ls 106
+  345  squeue -n HETDEX
+  346  ll -h HETDEX.o827906 
+  347  ll -h HETDEX.o827906 
+  348  ll -h HETDEX.o827906 
+  349  ll -h HETDEX.o827906 
+  350  squeue -n HETDEX
+  351  ll -h HETDEX.o827906 
+  352  ls 106
+  353  tail -f HETDEX.o827906 
+  354  ll -h HETDEX.o827906 
+  355  ll -h HETDEX.o827906 
+  356  tail -f HETDEX.o827906 
+  357  ls 106
+  358  cat rmv0
+  359  cat ../ifulist
+  360  cat ../../ifulist
+  361  squeue -n HETDEX
+  362  ll -h HETDEX.o827906 
+  363  cd ..
+  364  ls
+  365  cd ..
+  366  em -nw ifulist 
+  367  cd -
+  368  cd 20180702/
+  369  head rmv0
+  370  em -nw ../../ifulist
+  371  head rcp0
+  372  head rmv0
+  373  awk '{print "rmv0",$2,$3}' ../../ifulist
+  374  awk '{print "rmv",$2,$3}' ../../ifulist 
+  375  awk '{print "rmv",$1,$2}' ../../ifulist 
+  376  awk '{print "rmv",$1,$2}' ../../ifulist  > rmv0
+  377  cat rmv
+  378  pwd
+  379  squeue -n HETDEX
+  380  ls
+  381  ls 104
+  382  rmv0
+  383  ls
+  384  pwd
+  385  exit
+  386  cdw
+  387  cd getampnorm/
+  388  ls
+  389  cd all
+  390  ls
+  391  rbak
+  392  ls
+  393  cd ..
+  394  ls
+  395  rbak
+  396  ls
+  397  head rdoall
+  398  rdoall 20180624
+  399  squeue -n HETDEX
+  400  pwd
+  401  cd 20180624/
+  402  em -nw rt2
+  403  sbatch rt2.slurm
+  404  rbak
+  405  squeue -n HETDEX
+  406  ls
+  407  ls
+  408  ls *.twi
+  409  squeue -n HETDEX
+  410  ls
+  411  ls
+  412  squeue -n HETDEX
+  413  ls
+  414  ls
+  415  squeue -n HETDEX
+  416  ls
+  417  rm -r multi_326_082_034_LU
+  418  rm *.fits
+  419  ls
+  420  cat ../rdoall
+  421  run2
+  422  run3
+  423  ls
+  424  cat ../rdoall
+  425  rm m*fits mu*twi HET*
+  426  ls
+  427  ls multi_304_034_003_* > list
+  428  plotlinesamp
+  429  ls multi_304_034_003_* | awk '{print $1,1}' > list
+  430  plotlinesamp
+  431  pwd
+  432  cat list
+  433  head multi_304_034_003_RU.norm
+  434  grep 3975 *.norm
+  435  grep 3975 *.norm | sort -n +1 -2
+  436  head multi_304_034_003_RU.norm
+  437  grep 3625 *.norm | sort -n +1 -2
+  438  em -nw list
+  439  plotlinesamp
+  440  cat multi_038_096_014_RU.norm
+  441  plotlinesamp
+  442  em -nw list
+  443  plotlinesamp
+  444  em -nw list
+  445  plotlinesamp
+  446  grep 3625 *.norm | sort -n +1 -2 | head
+  447  plotlinesamp
+  448  plotlinesamp
+  449  plotlinesamp
+  450  cat multi_008_093_054_RL.norm
+  451  grep 5375 *.norm | sort -n +1 -2 | head
+  452  plotlinesamp
+  453  plotlinesamp
+  454  plotlinesamp
+  455  plotlinesamp
+  456  plotlinesamp
+  457  ps2pdf pgplot.ps 
+  458  pwd
+  459  cd ~/progs
+  460  em -nw plotlinesamp.f
+  461  mkdir 20180702
+  462  rmdir 20180702/
+  463  mk plotlinesamp
+  464  cd -
+  465  plotlinesamp
+  466  plotlinesamp
+  467  plotlinesamp
+  468  plotlinesamp
+  469  plotlinesamp
+  470  plotlinesamp
+  471  ps2pdf pgplot.ps 
+  472  exit
+  473  squeue -n HETDEX
+  474  pwd
+  475  cdw
+  476  cd getampnorm/
+  477  cd 20180624/
+  478  ls
+  479  ls
+  480  wc rt
+  481  wc rt2
+  482  wc rt3
+  483  wc run0
+  484  ls
+  485  ls
+  486  cat run0
+  487  cat run1
+  488  ls
+  489  cat ../rdoall
+  490  ls
+  491  more run0
+  492  cat run1
+  493  ls
+  494  cat ../rdoall
+  495  ln -s /work/03946/hetdex/maverick/red1/reductions/20180624/virus/virus0000001/exp01/virus/m*fits .
+  496  ls
+  497  head run0
+  498  sbatch run0.slurm 
+  499  squeue -n HETDEX
+  500  squeue -n HETDEX
+  501  squeue -n HETDEX
+  502  squeue
+  503  squeue -n HETDEX
+  504  ls
+  505  squeue -n HETDEX
+  506  ls
+  507  ls
+  508  ls
+  509  squeue -n HETDEX
+  510  ls
+  511  more run0
+  512  ls
+  513  squeue -n HETDEX
+  514  ls
+  515  ls
+  516  more run0.slurm 
+  517  squeue -n HETDEX
+  518  scancel 827948
+  519  more ../rdoall
+  520  sbatch runall.slurm
+  521  sbatch rt2.slurm
+  522  squeue -n HETDEX
+  523  ls
+  524  squeue -n HETDEX
+  525  ls
+  526  ls
+  527  squeue -n HETDEX
+  528  ls
+  529  squeue -n HETDEX
+  530  ls
+  531  more rt2
+  532  wc rt2
+  533  cat rt2
+  534  more HETDEX.o827950 
+  535  em -nw rt2.slurm 
+  536  cat rt2
+  537  run1 multi_326_082_034_RL
+  538  run1 multi_326_082_034_RU
+  539  cd
+  540  cd progs
+  541  em -nw plotlinesamp.f
+  542  mk plotlinesamp
+  543  cdw
+  544  cd getampnorm/
+  545  cd 20180624/
+  546  em -nw list
+  547  exit
+  548  cdh
+  549  cd red1/reductions/20180624/virus/virus0000001/exp01/virus/
+  550  imhead multi_012_106_033_LL.fits 
+  551  gethead multi_012_106_033_*fits OSCANMN
+  552  gethead multi_012_106_033_*fits OSCANMN GAIN
+  553  gethead multi_012_106_033_*fits OSCANMN OSCANSTD GAIN
+  554  gethead multi_013_*fits OSCANMN OSCANSTD GAIN
+  555  pwd
+  556  cdw
+  557  cdh
+  558  ls 20180624/virus/virus0000008/exp01/virus/2*fits
+  559  pwd
+  560  ls 20180624/virus/virus0000008/exp01/virus/20180624T095848.2_103L*
+  561  exit
+  562  cdw
+  563  mkdir forsteve
+  564  cd forsteve/
+  565  cp ../shuf/fplane.txt .
+  566  more fplane.txt 
+  567  pwd
+  568  cp ../sci/panacea/shifts/fplane.txt .
+  569  more fplane.txt 
+  570  cp ../shuf/shuffle.cfg .
+  571  em -nw shuffle.cfg 
+  572  cp ../shuf/rdo_shuffle .
+  573  cat rdo_shuffle 
+  574  do_shuffle -v 269.805 66.04 0 0 0 0 0 test
+  575  awk '{print 269.805/15}'
+  576  em -nw run1
+  577  em -nw run1
+  578  chmod +x run1
+  579  run1
+  580  ls
+  581  ls images/
+  582  display images/test_fp.png 
+  583  bg
+  584  cat HETcommands/test_000_E.hetcommands 
+  585  ls
+  586  cat shout.info 
+  587  cat shout.ifustars 
+  588  cat shout.result 
+  589  hist
+  590  hist
+  591  pwd
+  592  pwd
+  593  ls
+  594  em -nw run1
+  595  cat run1
+  596  awk '{print 269.805/15}'
+  597  awk '{print 269.763/15}'
+  598  em -nw run1
+  599  run1
+  600  ls
+  601  pwd
+  602  cp ../test9/readrd.f .
+  603  cp ../test9/fplane.txt .
+  604  cp ../test9/run1 run11
+  605  cat run11
+  606  cat run1
+  607  em -nw run11
+  608  awk '{print 269.763/15}'
+  609  em -nw run11
+  610  cp ../test9/mkradec0 .
+  611  cp ../test9/mkradec
+  612  cp ../test9/mkradec .
+  613  cat mkradec
+  614  run11
+  615  cp ../test9/corners.detect .
+  616  run11
+  617  run11 > t1
+  618  a.out > nep1
+  619  cat nep1 
+  620  wc nep1 
+  621  plotsteve 
+  622  plotsteve 
+  623  plotsteve 
+  624  plotsteve 
+  625  plotsteve 
+  626  plotsteve 
+  627  plotsteve 
+  628  plotsteve 
+  629  plotsteve 
+  630  plotsteve 
+  631  plotsteve 
+  632  plotsteve 
+  633  plotsteve 
+  634  plotsteve 
+  635  plotsteve 
+  636  plotsteve 
+  637  plotsteve 
+  638  plotsteve 
+  639  plotsteve 
+  640  plotsteve 
+  641  plotsteve 
+  642  plotsteve 
+  643  plotsteve 
+  644  ps2pdf pgplot.ps 
+  645  pwd
+  646  plotsteve 
+  647  ps2pdf pgplot.ps 
+  648  plotsteve 
+  649  plotsteve 
+  650  ps2pdf pgplot.ps 
+  651  plotsteve 
+  652  plotsteve 
+  653  ps2pdf pgplot.ps 
+  654  ls
+  655  cat out
+  656  cat out2
+  657  ls
+  658  cat run1
+  659  cat run11
+  660  plotsteve 
+  661  cat out
+  662  exit
+  663  squeue -n HETDEX
+  664  cdw
+  665  cd getstat/
+  666  ll -h HETDEX.o828183 
+  667  rm HETDEX.o828183 
+  668  ls *dat
+  669  ls *Ru.dat
+  670  ls *RU.dat
+  671  ls *RU.dat | wc
+  672  ls *RU.dat | awk '{print "rplot",$1}' | sed s/RU.dat//
+  673  ls *RU.dat | awk '{print "rplot",$1}' | sed s/RU.dat// > run21
+  674  ls 045*.dat
+  675  ls 045*.dat >list
+  676  plotstat 
+  677  em -nw rplot
+  678  em -nw rplot
+  679  chmod +x rplot
+  680  head run21
+  681  rplot 015
+  682  chmod +x run21
+  683  run21
+  684  ls *.pdf
+  685  rm *LL.pdf
+  686  ls *.pdf
+  687  ls *.pdf | wc
+  688  pwd
+  689  em -nw runall2
+  690  more runall2
+  691  run0 024LU 1016 1031
+  692  rplot 024
+  693  plotstat
+  694  em -nw runall2
+  695  grep 1031 runall2
+  696  run0 022LU 1016 1031
+  697  run0 024LU 1016 1031
+  698  run0 026LU 1016 1031
+  699  run0 027LU 1016 1031
+  700  run0 033LU 1016 1031
+  701  run0 035LU 1016 1031
+  702  run0 036LU 1016 1031
+  703  run0 037LU 1016 1031
+  704  run0 042LU 1016 1031
+  705  run0 043LU 1016 1031
+  706  run0 045LU 1016 1031
+  707  run0 072LU 1016 1031
+  708  run0 085LU 1016 1031
+  709  exit
+  710  cd progs/
+  711  em -nw plotstat.f
+  712  mk plotstat
+  713  cdw
+  714  cd getstat/
+  715  head run21
+  716  run21
+  717  hist
+  718  cd ~/progs
+  719  em -nw plotstat.f
+  720  mk plotstat
+  721  cd -
+  722  run21
+  723  run21
+  724  grep 1031 runall2
+  725  run21
+  726  exit
+  727  rgethead 20180624
+  728  rgethead 20180623
+  729  cdh
+  730  cd virus_config/lib_bias/
+  731  $CUREBIN/statfits -f -a masterbias_017_*
+  732  $CUREBIN/statfits -f -a masterbias_017_*
+  733  cd ../lib_dark/
+  734  $CUREBIN/statfits -f -a masterbias_017_*
+  735  $CUREBIN/statfits -f -a masterdark_017_*
+  736  cdw
+  737  cd scripts/
+  738  ls
+  739  ls tmpc041new/
+  740  rm -r tmpc041new/
+  741  ls
+  742  ls VIRUS/
+  743  ll VIRUS/
+  744  rm -r VIRUS
+  745  rm -rf VIRUS
+  746  ls
+  747  more cam04.conf 
+  748  pwd
+  749  rm *
+  750  ls
+  751  mkdir setup
+  752  mkdir astrometry
+  753  cd astrometry/
+  754  pwd
+  755  cp ../../sci/panacea/shifts/scripts/* .
+  756  ls
+  757  cp ../../sci/panacea/shifts/runall .
+  758  cp ../../sci/panacea/shifts/runall1 .
+  759  cp ../../sci/panacea/shifts/runallco .
+  760  pwd
+  761  pwd
+  762  cd ..
+  763  ls
+  764  mkdir fplane
+  765  cd fplane/
+  766  cp ../../sci/panacea/shifts/fplane.txt .
+  767  pwd
+  768  cd ..
+  769  mkdir shuffle
+  770  cd shuffle/
+  771  cp ../../shuf/shuffle.cfg .
+  772  cd ..
+  773  ls
+  774  cd setup/
+  775  cp ~/bin/rsetup .
+  776  cat rsetup 
+  777  cp ~/bin/awkr* .
+  778  cp ~/bin/gettwin .
+  779  ls
+  780  cat awkr1.dat 
+  781  cat awkr2.dat 
+  782  cp ../../sci/panacea/rscin666* .
+  783  cp ../../sci/panacea/rtwi666b* .
+  784  cat gettwin 
+  785  cat rsetup 
+  786  cp ~/bin/rsetupt .
+  787  head rsetupt
+  788  pwd
+  789  ls
+  790  cd ..
+  791  ls
+  792  exit
+  793  cdw
+  794  cd sci/panacea/shifts/
+  795  cat fplane
+  796  cat fplane.txt 
+  797  exit
+  798  cdw
+  799  cd scripts/
+  800  ls
+  801  echo "# hetdex" >> README.md
+  802  git init
+  803  git add README.md
+  804  git commit -m "first commit"
+  805  git remote add origin https://github.com/kgebhardt/hetdex.git
+  806  git push -u origin master
+  807  git config --global kgebhardt "Karl Gebhardt"
+  808  git commit --amend --author='Karl Gebhardt <gebhardt@astro.as.utexas.edu>'
+  809  git remote add origin https://github.com/kgebhardt/hetdex.git
+  810  git push -u origin master
+  811  ls
+  812  cat README.md 
+  813  pwd
+  814  git config --global user.name "Karl Gebhardt"
+  815  git config --global user.email gebhardt@astro.as.utexas.edu
+  816  git push -u origin master
+  817  git config --global user.name "kgebhardt"
+  818  git push -u origin master
+  819  ls https://github.com/kgebhardt
+  820  ls
+  821  ll
+  822  ls .git
+  823  git commit --amend --author='kgebhardt <gebhardt@astro.as.utexas.edu>'
+  824  ls
+  825  cd .git
+  826  ls
+  827  cat config 
+  828  ls info
+  829  ls refs
+  830  ls objects/
+  831  cd ..
+  832  ls
+  833  git config --global core.editor "emacs"
+  834  git commit --amend --author='kgebhardt <gebhardt@astro.as.utexas.edu>'
+  835  git config --global core.editor "emacs -nw"
+  836  git commit --amend --author='kgebhardt <gebhardt@astro.as.utexas.edu>'
+  837  git commit --amend --author='kgebhardt <gebhardt@astro.as.utexas.edu>'
+  838  git add astrometry
+  839  hist  | grep git
+  840  git push -u origin master
+  841  git push
+  842  git push -u astrometry
+  843  git remote add astrometry https://github.com/kgebhardt/hetdex.git
+  844  git push -u astrometry
+  845  ls .git/info/exclude 
+  846  cat .git/info/exclude
+  847  cat .git/refs
+  848  cat .git/refs/tags/
+  849  ls
+  850  git push -u astrometry master
+  851  hist
+  852  git remote add origin https://github.com/kgebhardt/hetdex.git
+  853  git remote add astrometry https://github.com/kgebhardt/hetdex.git
+  854  git push -u astrometry master
+  855  git push -u astrometry
+  856  cd .git
+  857  em -nw config 
+  858  cd ..
+  859  git remote set-url origin https://kgebhardt@github.com/user/repo.git
+  860  git push -u astrometry master
+  861  cat .git/config 
+  862  pwd
+  863  ls
+  864  rgethead 20180708
+  865  rgethead 20180709
+  866  rgethead 20180708
+  867  ls /work/03946/hetdex/maverick/20180708/virus/virus0000008/exp03/virus/*LL*
+  868  ls /work/03946/hetdex/maverick/20180708/virus/virus0000008/exp03/virus/*LL* | wc
+  869  pwd
+  870  cat ../sci/panacea/shifts/fplane.txt 
+  871  cdh
+  872  cd virus_config/
+  873  ls
+  874  cd Fiber_Locations/
+  875  ls
+  876  ls 201805*
+  877  pwd
+  878  cd ..
+  879  cd ..
+  880  ls
+  881  ls 20180708/virus/virus0000001/exp01/virus/*092*
+  882  ls 20180708/virus/virus0000004/exp01/virus/*092*
+  883  ls 20180708/virus/virus0000003/exp01/virus/*092*
+  884  ls 20180708/virus/virus0000002/exp01/virus/*092*
+  885  ls 20180708/virus/virus00000*/exp01/virus/*092*
+  886  ls 20180707/virus/virus00000*/exp01/virus/*092*
+  887  pwd
+  888  ls 20180707/virus/virus00000*/exp01/virus/*092*twi.fits
+  889  ls 2018070*/virus/virus00000*/exp01/virus/*092*twi.fits
+  890  ls 201806**/virus/virus00000*/exp01/virus/*092*twi.fits
+  891  exit
+  892  cdw
+  893  cd sci/panacea/shifts/
+  894  gethead /work/03946/hetdex/maverick/20180707/virus/virus0000001/exp01/virus/20180707T022724.0_092* IFUSLOT SPECID IFUID
+  895  em -nw fplane.txt 
+  896  gethead /work/03946/hetdex/maverick/20180707/virus/virus0000001/exp01/virus/20180707T022724.0_092* IFUSLOT SPECID IFUID SSA
+  897  em -nw fplane.txt 
+  898  gethead /work/03946/hetdex/maverick/20180707/virus/virus0000001/exp01/virus/20180707T022724.0_062* IFUSLOT SPECID IFUID SSA
+  899  em -nw fplane.txt 
+  900  rbak
+  901  pwd
+  902  cd ..
+  903  em -nw rtwi666b
+  904  em -nw rtwi666b.slurm 
+  905  rbak
+  906  em -nw rscin666
+  907  rbak
+  908  wc rscin666
+  909  rbak
+  910  sudo su - hetdex
+  911  pwd
+  912  cd shifts
+  913  pwd
+  914  squeue -n HETDEX
+  915  pwd
+  916  rgethead 20180708
+  917  rgethead 20180705
+  918  squeue -n HETDEX
+  919  cdh
+  920  cd red1
+  921  pwd
+  922  ls reductions/20180705/virus/virus0000005/exp03/virus/Co*
+  923  ls reductions/20180705/virus/virus0000005/exp03/virus/Co*
+  924  pwd
+  925  cdw
+  926  cd sci/panacea/
+  927  cd shifts/
+  928  em -nw runall1
+  929  em -nw runall
+  930  rbak
+  931  cat 20180705v006/all.mch
+  932  cat 20180705v006/all.mch
+  933  em -nw runall1
+  934  cat 20180705v006/awk2.dat
+  935  cat 20180705v006/run6
+  936  ls 20180705v006/*tot.als
+  937  ls 20180705v006/*tot.als
+  938  ls 20180705v006/*tot.als
+  939  ls 20180705v006/*tot.als
+  940  ls 20180705v006/*tot.als
+  941  ls 20180705v006/*tot.als
+  942  ls 20180705v006/*tot.als
+  943  ls 20180705v006/*tot.als
+  944  ls 20180705v006/all.mch 
+  945  cat 20180705v006/all.mch
+  946  cdh
+  947  ls 20180705/virus/virus00000*/*/*/*092LL8
+  948  ls 20180705/virus/virus00000*/*/*/*092LL*
+  949  ls 20180705/virus/virus00000*/*/*/*092LL*flt*
+  950  pwd
+  951  squeue -n HETDEX
+  952  cdw
+  953  ls getfib
+  954  cdw
+  955  cd scripts/
+  956  ls
+  957  mkdir getfib
+  958  ls
+  959  mkdir detect
+  960  ls
+  961  mkdir throughput
+  962  ls
+  963  cd setup/
+  964  ls
+  965  cp ../../sci/panacea/rscin666 .
+  966  cp ../../sci/panacea/rtwi666b .
+  967  ls
+  968  pwd
+  969  cd ../astrometry/
+  970  cp ../../sci/panacea/shifts/scripts/* .
+  971  ls
+  972  cp ../../sci/panacea/shifts/runall1 .
+  973  cp ../../sci/panacea/shifts/runall .
+  974  pwd
+  975  ls
+  976  cd ..
+  977  ls
+  978  cd shuffle/
+  979  ls
+  980  cp ../../shuf/rdo_shuffle .
+  981  pwd
+  982  cd ..
+  983  ls
+  984  pwd
+  985  cd ../detect
+  986  head run11.egs 
+  987  ls *.egs
+  988  head run0.egs
+  989  head run0b.egs
+  990  pwd
+  991  cd -
+  992  cd getfib
+  993  cp ../../detect/rset0 .
+  994  more rset0
+  995  ls
+  996  cat rset0
+  997  cd ..
+  998  ls
+  999  ls
+ 1000  exit
+ 1001  cdw
+ 1002  cd scripts/
+ 1003  hist | grep git
+ 1004  git remote add origin https://github.com/kgebhardt/hetdex.git
+ 1005  git push -u origin master
+ 1006  git push -u origin master
+ 1007  git remote set-url origin https://kgebhardt@github.com/user/repo.git
+ 1008  git push -u origin master
+ 1009  ls
+ 1010  pwd
+ 1011  cd astrometry/
+ 1012  em -nw runall1
+ 1013  rbak
+ 1014  more rastrom3
+ 1015  cp /work/00115/gebhardt/maverick/sci/progs/getoff2 .
+ 1016  em -nw rastrom3
+ 1017  cat runrd0 
+ 1018  cat runrd
+ 1019  more rastrom3
+ 1020  cat c1
+ 1021  ls
+ 1022  cat com0c
+ 1023  cat rastrom3
+ 1024  cat c*
+ 1025  pwd
+ 1026  grep fpl c*
+ 1027  em -nw com1
+ 1028  em -nw com3
+ 1029  rbak
+ 1030  grep fpl c*
+ 1031  rbak
+ 1032  ls
+ 1033  cat rdao1con 
+ 1034  ll ~gebhardt/lib/daoprogs/allstar 
+ 1035  ls
+ 1036  cd ..
+ 1037  ls
+ 1038  cd
+ 1039  ls lib
+ 1040  cd
+ 1041  ls
+ 1042  pwd
+ 1043  cdw
+ 1044  cd scripts/
+ 1045  ls
+ 1046  ls astrometry/
+ 1047  pwd
+ 1048  cd
+ 1049  ls lib
+ 1050  ls progs/*.f
+ 1051  cdw
+ 1052  cd scripts/
+ 1053  ls
+ 1054  cd astrometry/
+ 1055  ls
+ 1056  pwd
+ 1057  cd ..
+ 1058  ls
+ 1059  git push -u origin master
+ 1060  ls
+ 1061  cdw
+ 1062  cd sci/panacea/shifts/
+ 1063  ls 20180*/mktot
+ 1064  cdw
+ 1065  cd scripts/
+ 1066  ls
+ 1067  ls astrometry/
+ 1068  more runall1
+ 1069  more astrometry/runall1
+ 1070  ls
+ 1071  cw
+ 1072  cdw
+ 1073  cd sci/panacea/shifts/
+ 1074  cd ifuoff/plots/
+ 1075  ls
+ 1076  ps2pdf 074.ps
+ 1077  display 074.pdf
+ 1078  ps2pdf 035.ps
+ 1079  display 035.pdf
+ 1080  cdw
+ 1081  cd scripts/
+ 1082  ls
+ 1083  hist | grep git
+ 1084  ls
+ 1085  ls astrometry/
+ 1086  pwd
+ 1087  cd .git/
+ 1088  ls
+ 1089  cat config 
+ 1090  em -nw config 
+ 1091  cd ..
+ 1092  git push -u origin master
+ 1093  cd ~/.ssh
+ 1094  ls
+ 1095  cat id_rsa.pub 
+ 1096  cd -
+ 1097  pwd
+ 1098  git push -u origin master
+ 1099  pwd
+ 1100  ls
+ 1101  hist | grep git
+ 1102  git push -u origin master
+ 1103  cat .git/config
+ 1104  em -nw .git/config
+ 1105  cat .git/config
+ 1106  git push -u origin master
+ 1107  git remote set-url origin https://kgebhardt@github.com/user/repo.git
+ 1108  git push -u origin master
+ 1109  git remote set-url origin ssh://git@github.com/user/repo.git
+ 1110  git push -u origin master
+ 1111  cd ..
+ 1112  mkdir tmp
+ 1113  cd tmp
+ 1114  cdw
+ 1115  cd scripts/
+ 1116  cat .git/config
+ 1117  em -nw .git/config
+ 1118  git push -u origin master
+ 1119  ls
+ 1120  git status
+ 1121  git add astrometry
+ 1122  git commit 
+ 1123  git push
+ 1124  hist
+ 1125  hist > j1

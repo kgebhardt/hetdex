@@ -7,7 +7,12 @@ cd $1v$2
 mkdir -p exp$3_$4
 cd exp$3_$4
 
+mkdir /tmp/$1v$2e$3a$4
+cd /tmp/$1v$2e$3a$4
+
 cp /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/exp$3/virus/$4.fits .
+
+# this writes out the f2f to fbavg.fits
 cp $4.fits tmp.fits
 rm -f imars.fits
 ~gebhardt/bin/imars << eof
@@ -20,6 +25,7 @@ mv imars.fits $4_fbavg.fits
 
 /work/00115/gebhardt/maverick/scripts/getwave/rfixwv $4 $5
 
+# writes the new f2f and places it in the multifits
 cp $4_fbavg.fits newfb.fits
 rm -f imrep.fits
 ~gebhardt/bin/imrepwv << eof
@@ -28,6 +34,7 @@ eof
 mv imrep.fits tmp.fits
 cp newfb.fits fbavg.fits
 
+# since we are not changing f2f, maybe skip all this:
 cp /work/00115/gebhardt/maverick/scripts/getwave/* .
 rskyftf tmp
 cp sky.fits newsky.fits
@@ -38,6 +45,7 @@ mv e.fits newsky.fits
 tmp.fits
 eof
 mv imrep.fits $4.fits
+# to here
 
 # get the error and add it into the 18th extension
 rimerr $4
@@ -51,6 +59,15 @@ if [ -e /work/03946/hetdex/maverick/virus_config/rescor/$4res.fits ]
 then echo "Getting Residual map"
 #ln -s /work/03946/hetdex/maverick/virus_config/rescor/$4res.fits .
 cp /work/03946/hetdex/maverick/virus_config/rescor/$4res.fits .
-#rimsubres $4 $4res
+rimsubres $4 $4res
 rbadfib $4
 fi
+
+cd -
+mv /tmp/$1v$2e$3a$4/$4.fits .
+#mv /tmp/$1v$2e$3a$4/$4wv.dat .
+#mv /tmp/$1v$2e$3a$4/$4wv.ps .
+# mv /tmp/$1v$2e$3a$4/$4err.fits .
+# mv /tmp/$1v$2e$3a$4/$4err.dat .
+# mv /tmp/$1v$2e$3a$4/$4err2.dat .
+rm -r /tmp/$1v$2e$3a$4

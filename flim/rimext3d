@@ -1,0 +1,14 @@
+name=$1
+rm -f imars.fits
+~gebhardt/bin/imext3d << eof
+$1.fits
+1
+40 50
+25 35
+0
+eof
+~gebhardt/bin/ftoa << eof
+imars.fits
+1
+eof
+awk '{print 3480+($1-1)*2,1/$2}' ftoa.out > $1.out

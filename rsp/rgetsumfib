@@ -1,0 +1,8 @@
+n1=$1
+n2=$2
+if [ -e out2 ]
+then
+ awk '{s+=$10; print s}' out2d | tail -1 > j1
+ paste j1 out2 | awk '{if($4*$9>0) print name0,$9,$1/($4*$9),$1,$4*$9; else print name0,$9,0,$1,0}' name0=$n2
+fi
+

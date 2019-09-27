@@ -1,0 +1,20 @@
+date=$1
+shot=$2
+exp=$3
+ifu=$4
+spec=$5
+mth=$6
+dir1=$(pwd)
+cd tmp
+mkdir -p d${date}s${shot}${exp}i${ifu}
+cd d${date}s${shot}${exp}i${ifu}
+cp /work/00115/gebhardt/maverick/scripts/back/rbfits .
+cp /work/00115/gebhardt/maverick/scripts/back/rimarb .
+cp /work/00115/gebhardt/maverick/scripts/back/rback1 .
+cp /work/00115/gebhardt/maverick/scripts/back/sun_use.dat .
+rback1 $1 $2 $3 $4 $5 $6 LL
+rback1 $1 $2 $3 $4 $5 $6 LU
+rback1 $1 $2 $3 $4 $5 $6 RL
+rback1 $1 $2 $3 $4 $5 $6 RU
+cd ..
+rm -rf d${date}s${shot}${exp}i${ifu}

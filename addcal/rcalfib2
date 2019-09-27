@@ -1,0 +1,5 @@
+date=$1
+shot=$2
+amp=$3
+exp=$4
+awk '{print  "~gebhardt/bin/rextsp /work/03946/hetdex/maverick/red1/reductions/"date0"/virus/virus0000"shot0"/"exp0"/virus/"amp0".fits",$1,"4505 1035 tmp"$1".dat /work/00115/gebhardt/maverick/detect/tp/"date0"v"shot0"sedtp_f.dat /work/00115/gebhardt/maverick/getampnorm/all/"amp0".norm"}' date0=$date shot0=$shot amp0=$amp exp0=$exp fiblist

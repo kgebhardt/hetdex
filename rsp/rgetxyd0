@@ -1,0 +1,7 @@
+cat -b l1 | sort -g +7 -8 | head -1 | awk '{print "grep tmp"100+$1" rextsp0"}' > rj1
+chmod +x rj1
+rj1 > j1
+awk '{print "rgetxyd",$2,$3,4500}' j1 > rj1
+sed s/"\/"/" "/g rj1 | sed s/.fits// | awk '{print "grep",$13"_"$14,"../dithall.use | grep exp01"}' > rj2
+chmod +x rj2
+rj2 | awk '{print $4,$5}' > ifuxy.dat

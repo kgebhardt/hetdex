@@ -1,0 +1,30 @@
+rm -f imars.fits wv.fits fb.fits skysub.fits ifucen.fits tmp.fits
+cp $1.fits tmp.fits
+~gebhardt/bin/imars << eof
+tmp.fits
+12
+1
+0
+eof
+mv imars.fits wv.fits
+~gebhardt/bin/imars << eof
+tmp.fits
+7
+1
+0
+eof
+mv imars.fits ifucen.fits
+~gebhardt/bin/imars << eof
+tmp.fits
+14
+1
+0
+eof
+mv imars.fits fb.fits
+~gebhardt/bin/imars << eof
+tmp.fits
+16
+1
+0
+eof
+mv imars.fits skysub.fits

@@ -1,0 +1,5 @@
+rm -f imout.fits
+~gebhardt/bin/imrawview << eof
+"$4"
+$1 $2 $3
+eof

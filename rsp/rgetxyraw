@@ -1,0 +1,4 @@
+~gebhardt/bin/imgetxyraw << eof
+"$1"
+$2 $3
+eof

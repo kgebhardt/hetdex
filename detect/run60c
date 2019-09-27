@@ -1,0 +1,17 @@
+#sn=$1
+#sn2=$2
+#chi=$3
+#cont=$4
+#rap=$5
+
+rap=3.
+sn1a=5.3
+sn2a=20.
+chi1a=1.2
+chi2a=3.8
+#awk '{if($5<(chi1+(chi2-chi1)/(sn2-sn1)*($4-sn1)) && $4>sno && $3>3480 && $3<5525 && $8>-2 && $8<2) print $0,0}' sno=$sn chio=$chi chi1=$chi1a chi2=$chi2a sn1=$sn1a sn2=$sn2a alines | sort -r -g +3 -4 | awk '{print $0}'> allfit.dat 
+awk '{s+=1; print "/work/00115/gebhardt/maverick/scripts/rsp/rsp3f",$1,$2,rapo,$3,50,s,"dateandshot",1.7,3.,3.5,0,1,1,$4,$5}' rapo=$rap radec.out > rtmpl
+rm -f rtmpl_*
+jobsplitter2 rtmpl 200 5 '00:20:00'
+ls rtmpl_*.slurm | awk '{print "sbatch",$1}' > rbatch2
+chmod +x rbatch2

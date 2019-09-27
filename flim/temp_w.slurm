@@ -14,8 +14,8 @@
 #------------------Scheduler Options--------------------
 #SBATCH -J HETDEX              # Job name
 #SBATCH -n 50                  # Total number of tasks
-#SBATCH -N 5
-#SBATCH -p gpu                 # Queue name
+#SBATCH -N 5                   # Total number of nodes
+#SBATCH -p normal              # Queue name
 #SBATCH -o HETDEX.o%j          # Name of stdout output file (%j expands to jobid)
 #SBATCH -t 04:00:00            # Run time (hh:mm:ss)
 #SBATCH -A Hobby-Eberly-Telesco
@@ -34,9 +34,12 @@
 #------------------General Options---------------------
 module load launcher
 module unload xalt
+export TACC_LAUNCHER_PPN=24
 export EXECUTABLE=$TACC_LAUNCHER_DIR/init_launcher
-export WORKDIR=.
-export CONTROL_FILE=template
+export WORKDIR=$(pwd)
+export LAUNCHER_WORKDIR=$(pwd)
+export LAUNCHER_JOB_FILE=rfl666
+export LAUNCHER_NPROCS=16
 
 # Variable descriptions:
 #

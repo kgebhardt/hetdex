@@ -1,0 +1,16 @@
+#cols: RA DEC wavelength S/N chi^2 amplitude sigma_line continuum
+#grep . fitres/2*.res |  awk '{if($5>5.3&&$8<8&&$8>1.75&&$9<150&&$4>3480&&$4<5525&&$6<(2.3+(3.9-2.3)/(20.-5.)*($5-5))) print $0}' | sed s/".res:"/".spec"/ | sed s/fitres"\/"// | awk '{print $1,$5,$4}' | sort -n -r +1 -2  > inlist
+grep . fitres/2*.res |  awk '{if($5>5.3&&$8<8&&$8>1.75&&$9<150&&$4>3480&&$4<5525) print $0}' | sed s/".res:"/".spec"/ | sed s/fitres"\/"// | awk '{print $1,$5,$4}' | sort -n -r +1 -2  > inlist
+~gebhardt/bin/fitemb << eof
+/vcps
+eof
+paste inlist lines.out | sed s/_/" "/ | sed s/.spec// > out.all
+awk '{print "awk '\''{if($7=="$2") print $0}'\'' rtmpl"}' out.all > rtmp
+#awk '{print "grep",$1,"rtmpl | grep \"",$2,"\""}' out.all  > rtmp
+chmod +x rtmp
+rtmp > j1
+paste j1 out.all > j2
+awk '{print $8"_"$7,$2,$3,$22,$26,$28,$23,$24,$27}' j2 > in
+~gebhardt/bin/formatcat
+mv out cat.0
+echo "ID RA DEC wavelength S/N chi^2 amplitude sigma_line continuum" > header.cat

@@ -1,0 +1,34 @@
+date=$1
+shot=$2
+exp=$3
+amp=$4
+cd reductions/$date/virus/virus0000$shot/exp$exp/virus/
+rm -f out.fits
+
+~gebhardt/bin/imwvsky << eof
+"$4_LL.fits"
+/null
+eof
+mv out.fits $4_LL.fits
+
+~gebhardt/bin/imwvsky << eof
+"$4_LU.fits"
+/null
+eof
+mv out.fits $4_LU.fits
+
+~gebhardt/bin/imwvsky << eof
+"$4_RL.fits"
+/null
+eof
+mv out.fits $4_RL.fits
+
+~gebhardt/bin/imwvsky << eof
+"$4_RU.fits"
+/null
+eof
+mv out.fits $4_RU.fits
+
+
+#gs -sDEVICE=pngalpha -o $1$2$3$4.png -r144 pgplot.ps
+#rm -f pgplot.ps

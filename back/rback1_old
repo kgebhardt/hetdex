@@ -1,0 +1,35 @@
+date=$1
+shot=$2
+exp=$3
+ifu=$4
+spec=$5
+mth=$6
+amp=$7
+
+#grep ${ifu}${amp}_sci.fits /work/00115/gebhardt/maverick/gettar/${mth}tarlist | grep ${date} | grep virus0000${shot} | grep ${exp}  > list
+grep ${ifu}${amp}_ /work/00115/gebhardt/maverick/gettar/${mth}tarlist | grep ${date} | grep virus0000${shot} | grep ${exp}  > list
+
+cp -u /work/03946/hetdex/maverick/virus_config/Fiber_Locations/201*/fiber_loc_${spec}_${ifu}* .
+
+ls /work/03946/hetdex/maverick/virus_config/pbias/output2/masterbias_${spec}_${amp}.fits | tail -1 > spec.use
+awk '{s+=1; print "rbfits",$1,s,spec0"_"amp0}' amp0=$amp spec0=$spec list > rj1
+chmod +x rj1
+rj1
+
+#awk '{print "rimarb /work/03946/hetdex/maverick/virus_config/lib_back/201908sci/bk"mth0"i"ifu0 amp0".fits",$1*$2,1}' mth0=${mth} ifu0=${ifu} amp0=${amp} out > rj2
+#awk '{print "rimarb /work/03946/hetdex/maverick/virus_config/lib_back/201908bri/bk"mth0"i"ifu0 amp0".fits",$1*$3,2}' mth0=${mth} ifu0=${ifu} amp0=${amp} out >> rj2
+#awk '{print "rimarb /work/03946/hetdex/maverick/virus_config/lib_back/201908twi/bk"mth0"i"ifu0 amp0".fits",$1*$4,3}' mth0=${mth} ifu0=${ifu} amp0=${amp} out >> rj2
+#rm -rf ?.fits imcmb.fits
+#chmod +x rj2; rj2
+#ls ?.fits > list
+#~gebhardt/bin/imsum << eof
+#list
+#eof
+#mv imcmb.fits masterdark_${spec}_${amp}.fits
+
+mv outprof.fits ../d${date}s${shot}${exp}i${ifu}a${amp}prf.fits
+mv out.fits ../d${date}s${shot}${exp}i${ifu}a${amp}sub.fits
+mv out2.fits ../d${date}s${shot}${exp}i${ifu}a${amp}ftf.fits
+mv out3.fits ../d${date}s${shot}${exp}i${ifu}a${amp}xtr.fits
+mv out4.fits ../d${date}s${shot}${exp}i${ifu}a${amp}wtr.fits
+mv wave.out ../d${date}s${shot}${exp}i${ifu}a${amp}wavo.dat

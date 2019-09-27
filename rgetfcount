@@ -1,0 +1,2 @@
+ls | awk '{print "find",$1,"| wc -l"}' > rtmp; chmod +x rtmp; rtmp > ~/j1
+paste rtmp ~/j1 | awk '{print $2,$6}' | sort -g +1 -2

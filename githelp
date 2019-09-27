@@ -1,0 +1,72 @@
+  252  git pull
+  802  git init
+  803  git add README.md
+  804  git commit -m "first commit"
+  805  git remote add origin https://github.com/kgebhardt/hetdex.git
+  806  git push -u origin master
+  807  git config --global kgebhardt "Karl Gebhardt"
+  808  git commit --amend --author='Karl Gebhardt <gebhardt@astro.as.utexas.edu>'
+  809  git remote add origin https://github.com/kgebhardt/hetdex.git
+  810  git push -u origin master
+  814  git config --global user.name "Karl Gebhardt"
+  815  git config --global user.email gebhardt@astro.as.utexas.edu
+  816  git push -u origin master
+  817  git config --global user.name "kgebhardt"
+  818  git push -u origin master
+  819  ls https://github.com/kgebhardt
+  822  ls .git
+  823  git commit --amend --author='kgebhardt <gebhardt@astro.as.utexas.edu>'
+  825  cd .git
+  833  git config --global core.editor "emacs"
+  834  git commit --amend --author='kgebhardt <gebhardt@astro.as.utexas.edu>'
+  835  git config --global core.editor "emacs -nw"
+  836  git commit --amend --author='kgebhardt <gebhardt@astro.as.utexas.edu>'
+  837  git commit --amend --author='kgebhardt <gebhardt@astro.as.utexas.edu>'
+  838  git add astrometry
+  839  hist  | grep git
+  840  git push -u origin master
+  841  git push
+  842  git push -u astrometry
+  843  git remote add astrometry https://github.com/kgebhardt/hetdex.git
+  844  git push -u astrometry
+  845  ls .git/info/exclude 
+  846  cat .git/info/exclude
+  847  cat .git/refs
+  848  cat .git/refs/tags/
+  850  git push -u astrometry master
+  852  git remote add origin https://github.com/kgebhardt/hetdex.git
+  853  git remote add astrometry https://github.com/kgebhardt/hetdex.git
+  854  git push -u astrometry master
+  855  git push -u astrometry
+  856  cd .git
+  859  git remote set-url origin https://kgebhardt@github.com/user/repo.git
+  860  git push -u astrometry master
+  861  cat .git/config 
+ 1003  hist | grep git
+ 1004  git remote add origin https://github.com/kgebhardt/hetdex.git
+ 1005  git push -u origin master
+ 1006  git push -u origin master
+ 1007  git remote set-url origin https://kgebhardt@github.com/user/repo.git
+ 1008  git push -u origin master
+ 1059  git push -u origin master
+ 1083  hist | grep git
+ 1087  cd .git/
+ 1092  git push -u origin master
+ 1098  git push -u origin master
+ 1101  hist | grep git
+ 1102  git push -u origin master
+ 1103  cat .git/config
+ 1104  em -nw .git/config
+ 1105  cat .git/config
+ 1106  git push -u origin master
+ 1107  git remote set-url origin https://kgebhardt@github.com/user/repo.git
+ 1108  git push -u origin master
+ 1109  git remote set-url origin ssh://git@github.com/user/repo.git
+ 1110  git push -u origin master
+ 1116  cat .git/config
+ 1117  em -nw .git/config
+ 1118  git push -u origin master
+ 1120  git status
+ 1121  git add astrometry
+ 1122  git commit 
+ 1123  git push

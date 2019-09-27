@@ -1,0 +1,8 @@
+cd $4_$3
+echo $5 > fwhm.fix
+cp ../norm.dat .
+~gebhardt/bin/fit2dfix << eof
+$1 $2
+/null
+eof
+cat out2 >> ../outall

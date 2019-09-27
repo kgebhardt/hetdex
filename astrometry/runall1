@@ -3,10 +3,10 @@ cd $1v$2
 # cp /work/00115/gebhardt/maverick/sci/panacea/shifts/rimmask0 .
 # cp /work/00115/gebhardt/maverick/sci/panacea/shifts/rimmask .
 # cp /work/00115/gebhardt/maverick/sci/panacea/shifts/rimm .
-cp /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/*/*/CoFeS* .
+cp -a /work/03946/hetdex/maverick/red1/reductions/$1/virus/virus0000$2/*/*/CoFeS* .
 # chmod +x rimmask0; rimmask0
 ls CoFeS*_*.fits | cut -b 1-20 | uniq | awk '{print "python /work/00115/gebhardt/maverick/sci/panacea/shifts/cofes_vis.py",$1}' > j1 ; chmod +x j1 ; j1
-cp /work/00115/gebhardt/maverick/scripts/astrometry/* .
+cp -a /work/00115/gebhardt/maverick/scripts/astrometry/* .
 awk.dat
 run1
 rm -f CoFeS*fits
@@ -23,9 +23,9 @@ if [ -e all.raw ]
  else
    echo "only one file"
 fi
-cp /work/00115/gebhardt/maverick/scripts/shuffle/shuffle.cfg .
-cp /work/00115/gebhardt/maverick/scripts/shuffle/rdo_shuffle .
-cp /work/00115/gebhardt/maverick/scripts/fplane/fplane.txt .
+cp -a /work/00115/gebhardt/maverick/scripts/shuffle/shuffle.cfg .
+cp -a /work/00115/gebhardt/maverick/scripts/shuffle/rdo_shuffle .
+cp -a /work/00115/gebhardt/maverick/scripts/fplane/fplane.txt .
 echo "rdo_shuffle" $3 $4 0 $5 0 0 0 $1"v"$2 > rshuf
 chmod +x rshuf; rshuf
 grep 000001 $1v$2.ifu | awk '{print $3,$4,$5,$6,$2}' > shout.ifu

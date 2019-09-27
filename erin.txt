@@ -1,0 +1,17 @@
+Hey Karl,
+
+I agree that there is not time to develop this and certainly not time to document (unless its already in the calibration document since this is done for detections). But it can be an add on via the API, along with Greg's extraction.py script in a couple weeks time. 
+
+This is the rsp3 call:
+rsp3 150.025513 2.087768 3 3710.77 50 DEEP_406749 20180124v010 1.7 3
+
+and this is the rsp3s call:
+
+In this directory:
+/work/05350/ecooper/stampede2/test_rsp/rsp3stest 
+python ../HETDEX_API/get_rsp_spec.py -ra 150.025513 -dec 2.087768 -s 20180124v010
+~gebhardt/bin/rsp3s 150.025513 2.087768 
+
+The most I could do is add a line about it to the API section in the HDR1 document. It could very well be just because FWHM=1.7 in the original rsp3 call rather than 1.33
+
+Perhaps I'm supposed to use a different rspXX command here

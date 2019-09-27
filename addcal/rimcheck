@@ -1,0 +1,3 @@
+~gebhardt/bin/imcheckext << eof
+"$1.fits"
+eof

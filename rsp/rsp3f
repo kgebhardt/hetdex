@@ -1,0 +1,42 @@
+dir1=$(pwd)
+resdir=$dir1"/fitres"
+ra=$1
+dec=$2
+rap=$3
+wv=$4
+wr=$5
+f1=$6
+f2=$7
+fw=$8
+wc=$9
+sig=${10}
+step=${11}
+nstep=${12}
+ifit1=${13}
+mkdir -p /tmp/ras$7_$6
+cd /tmp/ras$7_$6
+rm -rf $7_$6
+mkdir -p $7_$6
+cd $7_$6
+if [ -e /work/00115/gebhardt/maverick/detect/$7/norm.dat ]
+then
+cp /work/00115/gebhardt/maverick/detect/$7/norm.dat .
+cp /work/00115/gebhardt/maverick/detect/$7/fwhm.out .
+fi
+~gebhardt/bin/rgetsp1f $1 $2 $3 4505 1035 $7_$6
+#~gebhardt/bin/rsp1bf $1 $2 $3 $4 $5 $6 $7
+#cd $7_$6
+~gebhardt/bin/fitradecsp << eof
+$1 $2 ${11} ${12} $4 3 ${13}
+eof
+cp outbest $resdir/$7_$6.res
+cp spec.out $resdir/$7_$6.spec
+if [ -e spec100.out ] 
+then
+cp spec.out $dir1/../res/sp$6_2.dat
+cp spec100.out $dir1/../res/sp$6_100.dat
+cp l1 $dir1/../res/$6.list
+fi
+cp l1 $resdir/$7_$6.list
+cd $resdir
+rm -r /tmp/ras$7_$6

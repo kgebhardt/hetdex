@@ -1,0 +1,9 @@
+cd $4_$3
+echo $5 > fwhm.fix
+cp ../norm.dat .
+~gebhardt/bin/fit2d << eof
+$1 $2
+/vcps
+eof
+gs -sDEVICE=pngalpha -o out.png -r144 pgplot.ps
+mv out.png ../.

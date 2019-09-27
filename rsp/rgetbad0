@@ -1,0 +1,9 @@
+cd $1v$2/lines/fitres
+rm -f rmbad
+ls *.info > inbad
+~gebhardt/bin/getbadamp
+sed s/.info// out | awk '{print "rm",$1".*"}' > rmbad
+chmod +x rmbad
+#rmbad
+mv out bad$1v$2.txt
+cat bad$1v$2.txt

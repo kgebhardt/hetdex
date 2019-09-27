@@ -1,0 +1,13 @@
+in=$1
+out=$2
+spec=$3
+rm -f in.fits improc.fits out.fits out2.fits
+echo $in > j1
+sed s/"\/"/" "/ j1 > j2
+sed s/"\/"/" "/ j2 > j1
+sed s/"\/"/" "/ j1 > j2
+awk '{print "tar xvf /work/03946/hetdex/maverick/"$1"/virus/"$3".tar",$3"/"$4}' j2 > rtmp
+chmod +x rtmp; rtmp
+mv virus0000*/*/*/2*fits in.fits
+rm -rf virus0000* out*fits wave.out
+timeout 10s ~gebhardt/bin/vred

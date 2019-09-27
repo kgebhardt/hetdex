@@ -1,0 +1,5 @@
+date=$1
+shot=$2
+exp=$3
+ifu=$4
+python /work/00115/gebhardt/maverick/panacea/Panacea/make_collapsed_frame.py -d $date -o $shot -e $exp -r reductions -i $ifu -in virus --spectype sky_subtracted

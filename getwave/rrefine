@@ -1,0 +1,5 @@
+date=$1
+shot=$2
+exp=$3
+mfits=$4
+python /work/00115/gebhardt/maverick/panacea/Panacea/refine_reduction.py -d $date -o $shot -e $exp -rc -r reductions -op reductions -m $mfits
