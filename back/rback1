@@ -8,14 +8,20 @@ amp=$7
 
 grep ${ifu}${amp}_ /work/00115/gebhardt/maverick/gettar/${mth}tarlist | grep ${date} | grep virus0000${shot} | grep ${exp}  > list
 
-cp -u /work/03946/hetdex/maverick/virus_config/Fiber_Locations/201*/fiber_loc_${spec}_${ifu}* .
+ls /work/03946/hetdex/maverick/virus_config/Fiber_Locations/201*/fiber_loc_${spec}_${ifu}*${amp}.txt | tail -1 | awk '{print "cp",$1,"."}' > rt1
+chmod +x rt1; rt1
 
-ls /work/03946/hetdex/maverick/virus_config/pbias/output2/masterbias_${spec}_${amp}.fits | tail -1 > spec.use
+ls /work/03946/hetdex/maverick/virus_config/lib_mbias/${mth}/masterbias_${spec}_${amp}.fits | tail -1 > spec.use
 awk '{s+=1; print "rbfits",$1,s,spec0"_"amp0}' amp0=$amp spec0=$spec list > rj1
 chmod +x rj1
 rj1
 
 mv out.fits ../d${date}s${shot}${exp}i${ifu}a${amp}sub.fits
+mv out5.fits ../d${date}s${shot}${exp}i${ifu}a${amp}1de.fits
+mv out6.fits ../d${date}s${shot}${exp}i${ifu}a${amp}rms.fits
+mv out7.fits ../d${date}s${shot}${exp}i${ifu}a${amp}1ds.fits
+mv out8.fits ../d${date}s${shot}${exp}i${ifu}a${amp}wav.fits
+mv out9.fits ../d${date}s${shot}${exp}i${ifu}a${amp}chi.fits
 if [ -e outprof.fits ]
 then
 mv outprof.fits ../d${date}s${shot}${exp}i${ifu}a${amp}prf.fits

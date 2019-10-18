@@ -1,0 +1,4 @@
+rpbias1 $1 $2 $3 LL
+rpbias1 $1 $2 $3 LU
+rpbias1 $1 $2 $3 RL
+rpbias1 $1 $2 $3 RU

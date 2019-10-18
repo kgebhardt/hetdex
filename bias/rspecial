@@ -1,0 +1,11 @@
+mth=$1
+cd ${mth}bias
+rm -f immask.fits
+
+~gebhardt/bin/immask << eof
+masterbias_013_LL.fits
+711 1032
+1 1032
+0
+eof
+mv immask.fits masterbias_013_LL.fits

@@ -1,0 +1,33 @@
+scale_lo=2
+scale_hi=10
+ifu=$1
+mth=$2
+spec=$3
+amp=$4
+dir1=$(pwd)
+cd ${mth}bias
+mkdir -p ${mth}i${ifu}
+cd ${mth}i${ifu}
+grep ${ifu}${amp}_zro.fits /work/00115/gebhardt/maverick/gettar/${mth}tarlist > ${amp}.list
+
+cp /data/00115/gebhardt/combbias/rbfits .
+
+awk '{s+=1; print "rbfits",$1,s,spec0"_"amp0}' amp0=$amp spec0=$spec ${amp}.list > rj1
+chmod +x rj1
+rm -f norm*.fits norm*.dat imcmb.fits imbox.fits
+rj1
+grep . norm*dat | awk '{if($4>lo0&&$4<hi0) print $1}' lo0=$scale_lo hi0=$scale_hi | sed s/.dat:/.fits/ > inlist
+~gebhardt/bin/imcmb << eof
+inlist
+eof
+~gebhardt/bin/imbox2 << eof
+imcmb.fits
+1
+1 7
+1
+0
+eof
+mv imcmb.fits ../biasm${mth}i${ifu}s${spec}a${amp}.fits
+mv imbox.fits ../masterbias_${spec}_${amp}.fits
+cd ..
+rm -rf ${mth}i${ifu}
